@@ -984,7 +984,7 @@ input[type=range]::-webkit-slider-runnable-track {
         flex: auto;
         width: 100%;
         align-items: center;
-        gap: 20px;
+        gap: 25px;
     }
 
     .benefits-center {
@@ -1074,7 +1074,7 @@ input[type=range]::-webkit-slider-runnable-track {
     }
 
     .benefits-column {
-        gap: 15px;
+        gap: 20px;
     }
 
     .benefit-item {
