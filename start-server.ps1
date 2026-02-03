@@ -27,7 +27,7 @@ while ($http.IsListening) {
     
     $path = $request.Url.LocalPath
     if ($path -eq "/") { $path = "/index.html" }
-    
+
     $filePath = Join-Path $PWD $path.TrimStart('/')
     
     if (Test-Path $filePath) {
