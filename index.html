@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Permanent+Marker&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/logo.png" type="image/png">
+    <link rel="icon" href="assets/logo.webp" type="image/webp">
 </head>
 
 <body>
@@ -20,10 +20,16 @@
     <!-- SECCIÓN 1: HERO (Impacto) -->
     <section class="hero-section hero-image-section">
         <!-- Imagen para Desktop -->
-        <img src="assets/hero-image-desktop.jpg" alt="Vida Activa Hero" class="hero-background hero-background-desktop">
+        <picture>
+            <source srcset="assets/hero-image-desktop.webp" type="image/webp">
+            <img src="assets/hero-image-desktop.jpg" alt="Vida Activa Hero" class="hero-background hero-background-desktop">
+        </picture>
         <!-- Imagen para Mobile -->
-        <img src="assets/hero-image-mobile.png" alt="Vida Activa Hero Mobile"
-            class="hero-background hero-background-mobile">
+        <picture>
+            <source srcset="assets/hero-image-mobile.webp" type="image/webp">
+            <img src="assets/hero-image-mobile.png" alt="Vida Activa Hero Mobile"
+                class="hero-background hero-background-mobile">
+        </picture>
         <div class="hero-overlay"></div>
         <div class="hero-container">
         </div>
@@ -34,20 +40,20 @@
         <div class="container">
             <div class="manifesto-grid">
                 <div class="manifesto-block">
-                    <img src="assets/icon-2.png" alt="Bienestar" class="manifesto-icon-img">
-                    <img src="assets/manifesto-proteinas.png"
+                    <img src="assets/icon-2.webp" alt="Bienestar" class="manifesto-icon-img" loading="lazy">
+                    <img src="assets/manifesto-proteinas.webp"
                         alt="¿Quién dijo que las proteínas son solo para los que levantan pesas?"
-                        class="manifesto-text-img">
+                        class="manifesto-text-img" loading="lazy">
                 </div>
                 <div class="manifesto-block">
-                    <img src="assets/icon-1.png" alt="Actividad" class="manifesto-icon-img">
-                    <img src="assets/manifesto-bienestar.png" alt="¿O que el bienestar se mide en kilómetros corridos?"
-                        class="manifesto-text-img">
+                    <img src="assets/icon-1.webp" alt="Actividad" class="manifesto-icon-img" loading="lazy">
+                    <img src="assets/manifesto-bienestar.webp" alt="¿O que el bienestar se mide en kilómetros corridos?"
+                        class="manifesto-text-img" loading="lazy">
                 </div>
                 <div class="manifesto-block">
-                    <img src="assets/icon-3.png" alt="Vida Activa" class="manifesto-icon-img">
-                    <img src="assets/manifesto-vidaactiva.png"
-                        alt="Vida Activa porque creemos que estar bien es mucho más que eso" class="manifesto-text-img">
+                    <img src="assets/icon-3.webp" alt="Vida Activa" class="manifesto-icon-img" loading="lazy">
+                    <img src="assets/manifesto-vidaactiva.webp"
+                        alt="Vida Activa porque creemos que estar bien es mucho más que eso" class="manifesto-text-img" loading="lazy">
                 </div>
             </div>
         </div>
@@ -60,20 +66,20 @@
                 <!-- Beneficios Izquierda -->
                 <div class="benefits-column benefits-left">
                     <div class="benefit-item" data-position="left-top">
-                        <div class="benefit-icon"><img src="assets/icon-muscle.png" alt="Proteína"
-                                class="benefit-icon-img"></div>
+                        <div class="benefit-icon"><img src="assets/icon-muscle.webp" alt="Proteína"
+                                class="benefit-icon-img" loading="lazy"></div>
                         <h3>50g Proteína</h3>
                         <p>Mantenimiento muscular y saciedad.</p>
                     </div>
                     <div class="benefit-item" data-position="left-middle">
-                        <div class="benefit-icon"><img src="assets/icon-lactosa.png" alt="Sin Lactosa"
-                                class="benefit-icon-img"></div>
+                        <div class="benefit-icon"><img src="assets/icon-lactosa.webp" alt="Sin Lactosa"
+                                class="benefit-icon-img" loading="lazy"></div>
                         <h3>0% Lactosa</h3>
                         <p>Fácil digestión.</p>
                     </div>
                     <div class="benefit-item" data-position="left-bottom">
-                        <div class="benefit-icon"><img src="assets/icon-grasas.png" alt="Sin Grasas"
-                                class="benefit-icon-img"></div>
+                        <div class="benefit-icon"><img src="assets/icon-grasas.webp" alt="Sin Grasas"
+                                class="benefit-icon-img" loading="lazy"></div>
                         <h3>0% Grasas</h3>
                         <p>Ligero para tu cuerpo.</p>
                     </div>
@@ -120,21 +126,21 @@
                             </defs>
                         </svg>
 
-                        <img src="assets/product.png" alt="Vida Activa - Leche con Proteína" class="product-center-img">
+                        <img src="assets/product.webp" alt="Vida Activa - Leche con Proteína" class="product-center-img" loading="lazy">
                     </div>
                 </div>
 
                 <!-- Beneficios Derecha -->
                 <div class="benefits-column benefits-right">
                     <div class="benefit-item" data-position="right-top">
-                        <div class="benefit-icon"><img src="assets/icon-azucares.png" alt="Sin Azúcares"
-                                class="benefit-icon-img"></div>
+                        <div class="benefit-icon"><img src="assets/icon-azucares.webp" alt="Sin Azúcares"
+                                class="benefit-icon-img" loading="lazy"></div>
                         <h3>0% Azúcares</h3>
                         <p>Sabor natural, sin agregados.</p>
                     </div>
                     <div class="benefit-item" data-position="right-bottom">
-                        <div class="benefit-icon"><img src="assets/icon-dna.png" alt="Aminoácidos"
-                                class="benefit-icon-img"></div>
+                        <div class="benefit-icon"><img src="assets/icon-dna.webp" alt="Aminoácidos"
+                                class="benefit-icon-img" loading="lazy"></div>
                         <h3>9 Aminoácidos</h3>
                         <p>Nutrición completa garantizada.</p>
                     </div>
@@ -203,7 +209,7 @@
             <div class="recipes-grid">
                 <!-- Recipe 1: Pancakes -->
                 <div class="recipe-card" data-recipe="pancakes">
-                    <div class="recipe-image" style="background-image: url('assets/pancakes-closeup.jpg');"></div>
+                    <div class="recipe-image" style="background-image: url('assets/pancakes-closeup.webp');"></div>
                     <div class="recipe-content">
                         <h3>Pancakes Proteicos</h3>
                         <p class="recipe-intro">"Desayuno de campeones. Avena, huevo y Vida Activa."</p>
@@ -243,7 +249,7 @@
 
                 <!-- Recipe 2: Smoothie -->
                 <div class="recipe-card" data-recipe="smoothie">
-                    <div class="recipe-image" style="background-image: url('assets/smoothie.png');"></div>
+                    <div class="recipe-image" style="background-image: url('assets/smoothie.webp');"></div>
                     <div class="recipe-content">
                         <h3>Licuado "Power Start"</h3>
                         <p class="recipe-intro">"Banana, avena y Vida Activa. Energía lista en 2 minutos."</p>
@@ -280,7 +286,7 @@
 
                 <!-- Recipe 3: Iced Coffee -->
                 <div class="recipe-card" data-recipe="iced-coffee">
-                    <div class="recipe-image" style="background-image: url('assets/iced-coffee.png');"></div>
+                    <div class="recipe-image" style="background-image: url('assets/iced-coffee.webp');"></div>
                     <div class="recipe-content">
                         <h3>Iced Coffee Proteico</h3>
                         <p class="recipe-intro">"El corte de la tarde. Café frío + espuma de proteína."</p>
