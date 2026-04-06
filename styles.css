@@ -1111,3 +1111,110 @@ input[type=range]::-webkit-slider-runnable-track {
         object-position: center center;
     }
 }
+
+/* --- DARK MODE SUPPORT --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: #7da5f5; /* Celeste brillante para contraste */
+        --color-primary-light: #9dbfff;
+        --color-secondary: #2d2d2d;
+        --color-accent: #1a1a1a;
+        --color-text-dark: #e0e0e0;
+        --color-text-light: #ffffff;
+    }
+
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    .manifesto-section, 
+    .recipes-section,
+    .recipe-card {
+        background-color: #1a1a1a !important;
+    }
+
+    .benefits-section {
+        background-color: #121212 !important;
+    }
+
+    .benefit-item {
+        background: #252525 !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Solución para iconos con fondo blanco: convertirlos en badges */
+    .manifesto-icon-img,
+    .benefit-icon {
+        background: white;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .benefit-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 15px;
+    }
+
+    .manifesto-icon-img {
+        height: 120px;
+        width: 120px;
+        padding: 20px;
+    }
+
+    /* Ajuste de Flechas en modo oscuro */
+    .arrow path {
+        stroke: #7da5f5;
+    }
+    
+    #arrowhead polygon, 
+    #arrowhead-right polygon {
+        fill: #7da5f5;
+    }
+
+    /* Recetas */
+    .recipe-intro {
+        color: #aaa;
+    }
+    
+    .recipe-details {
+        border-color: #333;
+    }
+
+    .recipe-tip {
+        background-color: #222;
+        color: #eee;
+    }
+
+    .view-recipe-btn {
+        border-color: #7da5f5;
+        color: #7da5f5;
+    }
+
+    .view-recipe-btn:hover {
+        background-color: #7da5f5;
+        color: #121212;
+    }
+
+    /* Modulo Interactivo */
+    .calculator-module, 
+    .visualizer-module {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .result-box {
+        background: #252525;
+        color: #7da5f5;
+    }
+
+    /* Navbar */
+    .navbar {
+        background: rgba(18, 18, 18, 0.9);
+    }
+}
