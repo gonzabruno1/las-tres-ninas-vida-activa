@@ -19,11 +19,11 @@
 
     <!-- SECCIÓN 1: HERO (Impacto) -->
     <section class="hero-section hero-image-section">
-        <!-- Imagen para Desktop -->
-        <img src="assets/hero-image-desktop.webp" alt="Vida Activa Hero" class="hero-background hero-background-desktop">
-        <!-- Imagen para Mobile -->
-        <img src="assets/hero-image-mobile.webp" alt="Vida Activa Hero Mobile"
-            class="hero-background hero-background-mobile">
+        <!-- Hero Background Optimized -->
+        <picture>
+            <source srcset="assets/hero-image-mobile.webp" media="(max-width: 480px)">
+            <img src="assets/hero-image-desktop.webp" alt="Vida Activa Hero" class="hero-background">
+        </picture>
         <div class="hero-overlay"></div>
         <div class="hero-container">
         </div>

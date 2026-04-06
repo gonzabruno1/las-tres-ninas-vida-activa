@@ -1,0 +1,13 @@
+# Directorios temporales y de herramientas
+tmp/
+*.zip
+*.exe
+*.dll
+*.lib
+*.ppm
+
+# Otros archivos innecesarios
+.DS_Store
+Thumbs.db
+node_modules/
+.env
