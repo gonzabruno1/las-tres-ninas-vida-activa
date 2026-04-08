@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const activityBtns = document.querySelectorAll('.activity-btn');
     const resultBox = document.getElementById('calc-result');
     const proteinGrams = document.getElementById('protein-grams');
-    let activityMultiplier = 2.2; // Default to active
+    let activityMultiplier = 2.0; // Default to active
 
     // Handle activity selection
     activityBtns.forEach(btn => {
