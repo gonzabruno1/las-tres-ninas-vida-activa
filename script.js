@@ -1,5 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* =====================================================
+       PARALLAX EN SCROLL — liviano, GPU, throttle con rAF
+       ===================================================== */
+    const parallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+
+    if (parallaxEls.length && !prefersReducedMotion) {
+        let ticking = false;
+
+        const updateParallax = () => {
+            const vh = window.innerHeight;
+            parallaxEls.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                // Solo calcular si está cerca del viewport (perf)
+                if (rect.bottom < -vh || rect.top > vh * 2) return;
+                const speed = parseFloat(el.dataset.parallax) || 0.1;
+                // progress: 0 cuando el centro del elemento está en el centro del viewport
+                const progress = (rect.top + rect.height / 2 - vh / 2) / vh;
+                const translateY = (progress * speed * 100).toFixed(1);
+                el.style.transform = `translate3d(0, ${translateY}px, 0)`;
+            });
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+        updateParallax(); // posición inicial
+    }
+
     /* =====================================================
        SCROLL ANIMATIONS — Intersection Observer
        ===================================================== */
