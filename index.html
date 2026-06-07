@@ -15,14 +15,11 @@
 
     <!-- SECCIÓN 1: HERO (Impacto) -->
     <section class="hero-section hero-image-section">
-        <!-- Hero Background Optimized -->
-        <picture>
-            <source srcset="assets/hero-image-mobile.webp" media="(max-width: 480px)">
-            <img src="assets/hero-image-desktop.webp" alt="Vida Activa Hero" class="hero-background">
+        <!-- Hero adaptable: imagen vertical en celular (portrait), horizontal en compu (landscape) -->
+        <picture class="hero-picture">
+            <source srcset="assets/hero-image-mobile.webp" media="(orientation: portrait)">
+            <img src="assets/hero-image-desktop.webp" alt="Las Tres Niñas Vida Activa - Nueva leche con proteína, 54g por litro" class="hero-background" fetchpriority="high">
         </picture>
-        <div class="hero-overlay"></div>
-        <div class="hero-container">
-        </div>
     </section>
 
     <!-- SECCIÓN 2: MANIFIESTO (Empatía) -->
@@ -164,7 +161,7 @@
 
                     <div id="calc-result" class="result-box hidden">
                         <p class="result-text">Tu cuerpo necesita aprox. <span id="protein-grams">0</span> gramos.</p>
-                        <p class="result-sub">Con 1 vaso de Vida Activa ya cubrís 10g de forma fácil.</p>
+                        <p class="result-sub">Con 1 vaso de Vida Activa ya cubrís 10.8g de forma fácil.</p>
                     </div>
                 </form>
             </div>
