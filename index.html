@@ -13,13 +13,34 @@
 
 <body>
 
-    <!-- SECCIÓN 1: HERO (Impacto) -->
-    <section class="hero-section hero-image-section">
-        <!-- Hero adaptable: imagen vertical en celular (portrait), horizontal en compu (landscape) -->
-        <picture class="hero-picture">
-            <source srcset="assets/hero-image-mobile.webp" media="(orientation: portrait)">
-            <img src="assets/hero-image-desktop.webp" alt="Las Tres Niñas Vida Activa - Nueva leche con proteína, 54g por litro" class="hero-background" fetchpriority="high">
-        </picture>
+    <!-- SECCIÓN 1: HERO (Impacto) - Reconstruido por capas, animado y responsive -->
+    <section class="hero-section">
+        <!-- Capa 1: foto de fondo + degradé azul -->
+        <div class="hero-photo-layer">
+            <img src="assets/hero-photo.webp"
+                alt="Pareja activa corriendo al aire libre junto al mar"
+                class="hero-photo" fetchpriority="high">
+            <div class="hero-gradient"></div>
+        </div>
+
+        <!-- Capa 2: pack del producto -->
+        <img src="assets/product.webp"
+            alt="Las Tres Niñas Vida Activa - Leche con proteína, 54g por litro"
+            class="hero-pack">
+
+        <!-- Capa 3: contenido (título + viñeta) -->
+        <div class="hero-content-layer">
+            <h1 class="hero-title">
+                <span class="hero-title-line">VIVIR</span>
+                <span class="hero-title-line">ACTIVO</span>
+                <span class="hero-title-line">ES UNA</span>
+                <span class="hero-title-line">ACTITUD</span>
+            </h1>
+            <div class="hero-badge">
+                <span>NUEVA LECHE</span>
+                <span>CON PROTEÍNA</span>
+            </div>
+        </div>
     </section>
 
     <!-- SECCIÓN 2: MANIFIESTO (Empatía) -->

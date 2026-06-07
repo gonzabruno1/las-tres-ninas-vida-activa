@@ -1,6 +1,9 @@
 # Imágenes fuente originales (se suben solo los WebP optimizados)
 source-images/
 
+# Herramientas locales de preview (no van al deploy)
+.claude/
+
 # Directorios temporales y de herramientas
 tmp/
 *.zip
