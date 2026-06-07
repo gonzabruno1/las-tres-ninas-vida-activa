@@ -4,12 +4,21 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
 
-# Caching for assets (Images, Fonts, etc.)
-/assets/*
-  Cache-Control: public, max-age=31536000, immutable
+# HTML: siempre fresco (referencia al CSS/JS y a los assets)
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
 
-# Standard caching for CSS/JS
+# CSS y JS: revalidar siempre. Si no cambió, el server responde 304
+# (solo headers, casi cero bandwidth) y el navegador usa su copia.
+# Así nunca queda CSS viejo congelado, sin gastar bandwidth de más.
 /*.css
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=0, must-revalidate
 /*.js
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Imágenes y fuentes: caché corto (1 hora). Bajan una vez y se reusan,
+# pero si actualizamos un render, en máximo 1 hora todos ven el nuevo.
+/assets/*
+  Cache-Control: public, max-age=3600, must-revalidate
