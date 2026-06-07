@@ -1,3 +1,6 @@
+# Imágenes fuente originales (se suben solo los WebP optimizados)
+source-images/
+
 # Directorios temporales y de herramientas
 tmp/
 *.zip

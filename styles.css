@@ -159,7 +159,7 @@ section[id] {
     background-position: center;
     background-repeat: no-repeat;
     color: var(--color-text-light);
-    min-height: 100vh;
+    height: 100vh;      /* Pantalla completa en desktop */
     display: flex;
     align-items: center;
     position: relative;
@@ -1027,9 +1027,8 @@ input[type=range]::-webkit-slider-runnable-track {
     }
 
     .hero-section {
-        min-height: 80vh;
-        max-height: 90vh;
-        height: 85vh;
+        min-height: 100svh; /* Pantalla completa en mobile: la imagen vertical lo merece */
+        max-height: none;
     }
 
     .hero-background {
@@ -1100,6 +1099,8 @@ input[type=range]::-webkit-slider-runnable-track {
     .footer-cta-subtitle {
         font-size: 1rem;
     }
+} /* ← cierra @media (max-width: 480px) */
+
 /* --- RESPONSIVE: Landscape orientation on mobile --- */
 @media (max-width: 768px) and (orientation: landscape) {
     .hero-section {
@@ -1109,4 +1110,185 @@ input[type=range]::-webkit-slider-runnable-track {
     .hero-background {
         object-position: center center;
     }
+}
+
+/* =====================================================
+   ANIMACIONES
+   ===================================================== */
+
+/* --- Hero: fade in suave al cargar (sin zoom para no recortar la imagen) --- */
+@keyframes heroFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.hero-section {
+    animation: heroFadeIn 1s ease-out;
+}
+
+/* --- Producto: flotación continua --- */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-14px); }
+}
+
+.product-wrapper {
+    animation: float 4.5s ease-in-out infinite;
+}
+
+/* Override: hover escala sobre el flotante */
+.product-center-img:hover {
+    transform: scale(1.05);
+    transition: transform 0.4s ease;
+}
+
+/* --- Scroll animations: base --- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-36px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-in-up.is-visible,
+.fade-in-left.is-visible,
+.fade-in-right.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* Stagger delays */
+.stagger-1 { transition-delay: 0.10s; }
+.stagger-2 { transition-delay: 0.22s; }
+.stagger-3 { transition-delay: 0.34s; }
+.stagger-4 { transition-delay: 0.46s; }
+.stagger-5 { transition-delay: 0.58s; }
+
+/* --- Recetas: pulse suave en hover sobre el botón --- */
+@keyframes pulseBorder {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 35, 102, 0.3); }
+    50%       { box-shadow: 0 0 0 6px rgba(0, 35, 102, 0); }
+}
+
+.view-recipe-btn:hover {
+    animation: pulseBorder 1.2s ease-in-out infinite;
+}
+
+/* --- Benefit: highlight al entrar al viewport --- */
+@keyframes cardPop {
+    0%   { transform: scale(0.92); opacity: 0; }
+    60%  { transform: scale(1.03); }
+    100% { transform: scale(1);    opacity: 1; }
+}
+
+.benefit-item.is-visible {
+    animation: cardPop 0.55s ease forwards;
+}
+
+/* Mantener opacity: 0 hasta que JS la dispare */
+.benefit-item {
+    opacity: 0;
+}
+
+/* --- Contador animado del número 54g --- */
+@keyframes countUp {
+    from { transform: translateY(8px); opacity: 0; }
+    to   { transform: translateY(0);   opacity: 1; }
+}
+
+.benefit-item.is-visible h3 {
+    animation: countUp 0.4s ease 0.1s both;
+}
+
+/* --- Manifesto: slide lateral alternado --- */
+.manifesto-block:nth-child(odd)  { opacity: 0; transform: translateX(-30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.manifesto-block:nth-child(even) { opacity: 0; transform: translateX(30px);  transition: opacity 0.7s ease, transform 0.7s ease; }
+
+.manifesto-block.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.manifesto-block:nth-child(1) { transition-delay: 0.0s; }
+.manifesto-block:nth-child(2) { transition-delay: 0.18s; }
+.manifesto-block:nth-child(3) { transition-delay: 0.36s; }
+
+/* --- Footer CTA --- */
+.footer-cta {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.footer-cta.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Módulos interactivos --- */
+.calculator-module,
+.visualizer-module {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.calculator-module.is-visible,
+.visualizer-module.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.visualizer-module { transition-delay: 0.18s; }
+
+/* --- Recipe cards --- */
+.recipe-card {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.recipe-card:nth-child(1) { transition-delay: 0.0s; }
+.recipe-card:nth-child(2) { transition-delay: 0.15s; }
+.recipe-card:nth-child(3) { transition-delay: 0.30s; }
+
+/* Asegurar que el hover de recipe-card funcione cuando ya es visible */
+.recipe-card.is-visible:hover {
+    transform: translateY(-5px);
+}
+
+/* =====================================================
+   MOBILE: mejoras específicas para experiencia QR
+   ===================================================== */
+@media (max-width: 768px) {
+    /* Hero más alto en mobile para mostrar bien la imagen vertical */
+    .hero-section {
+        min-height: 100svh; /* svh = safe viewport height (respeta notch iOS) */
+    }
+
+    /* Manifesto: en mobile no hay espacio para slide lateral, hacemos fade-up */
+    .manifesto-block:nth-child(odd),
+    .manifesto-block:nth-child(even) {
+        transform: translateY(28px);
+    }
+
+    /* Recipe cards en mobile: stagger menor */
+    .recipe-card:nth-child(2) { transition-delay: 0.08s; }
+    .recipe-card:nth-child(3) { transition-delay: 0.16s; }
 }
