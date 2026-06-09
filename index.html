@@ -7,7 +7,7 @@
     <title>Las Tres Niñas Vida Activa - Leche con Proteína</title>
     <meta name="description"
         content="Descubrí la nueva leche con proteína Vida Activa de Las Tres Niñas. Con 54g de proteína por litro, 0% lactosa, 0% grasas, 0% azúcares añadidos y 9 aminoácidos esenciales.">
-    <link rel="stylesheet" href="styles.css?v=10">
+    <link rel="stylesheet" href="styles.css?v=11">
     <link rel="icon" href="assets/logo.webp" type="image/webp">
 </head>
 
@@ -140,7 +140,47 @@
                             </defs>
                         </svg>
 
-                        <img src="assets/product.webp" alt="Vida Activa - Leche con Proteína" class="product-center-img" loading="lazy">
+                        <!-- Pack que se da vuelta y muestra la tabla nutricional -->
+                        <div class="product-flip" id="product-flip" role="button" tabindex="0"
+                            aria-label="Pack Vida Activa. Tocá para ver la información nutricional.">
+                            <div class="product-face product-front">
+                                <img src="assets/product.webp" alt="Vida Activa - Leche con Proteína"
+                                    class="product-center-img" loading="lazy">
+                                <span class="product-flip-hint" aria-hidden="true">↻ Info nutricional</span>
+                            </div>
+                            <div class="product-face product-back">
+                                <div class="nutrition">
+                                    <h4 class="nutrition-title">Información Nutricional</h4>
+                                    <p class="nutrition-portion">Porción 200 ml (1 vaso)</p>
+                                    <table class="nutrition-table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>100 ml</th>
+                                                <th>Porción</th>
+                                                <th>%VD*</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Valor energético</td><td>41 kcal</td><td>82 kcal</td><td>4</td></tr>
+                                            <tr><td>Carbohidratos</td><td>4,8 g</td><td>9,6 g</td><td>3</td></tr>
+                                            <tr class="sub"><td>Azúcares totales</td><td>4,8 g</td><td>9,6 g</td><td>—</td></tr>
+                                            <tr class="sub"><td>Azúcares añadidos</td><td>0,0 g</td><td>0,0 g</td><td>—</td></tr>
+                                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
+                                            <tr><td>Grasas totales</td><td>0,0 g</td><td>0,0 g</td><td>0</td></tr>
+                                            <tr class="sub"><td>Grasas saturadas</td><td>0,0 g</td><td>0,0 g</td><td>0</td></tr>
+                                            <tr class="sub"><td>Grasas trans</td><td>0 g</td><td>0 g</td><td>—</td></tr>
+                                            <tr><td>Fibra alimentaria</td><td>0 g</td><td>0 g</td><td>0</td></tr>
+                                            <tr><td>Sodio</td><td>45 mg</td><td>90 mg</td><td>4</td></tr>
+                                            <tr><td>Calcio</td><td>150 mg</td><td>300 mg</td><td>30</td></tr>
+                                            <tr><td>Vitamina A</td><td>80 µg</td><td>160 µg</td><td>27</td></tr>
+                                            <tr><td>Vitamina D</td><td>1,0 µg</td><td>2,0 µg</td><td>40</td></tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="nutrition-foot">*% Valores Diarios con base a una dieta de 2000 kcal.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -375,7 +415,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=10"></script>
+    <script src="script.js?v=11"></script>
 </body>
 
 </html>

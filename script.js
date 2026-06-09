@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
        FLIP CARDS de beneficios — tocá/click para dar vuelta
        (un tap no interrumpe el scroll: el scroll es un arrastre)
        ===================================================== */
-    document.querySelectorAll('.benefit-item').forEach(card => {
+    document.querySelectorAll('.benefit-item, .product-flip').forEach(card => {
         const toggle = () => card.classList.toggle('flipped');
         card.addEventListener('click', toggle);
         card.addEventListener('keydown', (e) => {
