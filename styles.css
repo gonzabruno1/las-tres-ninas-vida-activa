@@ -981,13 +981,20 @@ input[type=range]::-webkit-slider-runnable-track {
         gap: 25px;
     }
 
+    /* SCROLLYTELLING: el pack queda pineado mientras scrolleás los beneficios */
     .benefits-center {
         order: -1;
-        margin-bottom: 20px;
+        position: sticky;
+        top: 9vh;
+        z-index: 5;
+        transform: none !important;   /* anula el parallax en mobile */
+        margin-bottom: 10vh;
+        pointer-events: none;          /* deja pasar el scroll/touch a las cards */
     }
 
     .product-center-img {
-        height: 250px;
+        height: 230px;
+        pointer-events: auto;
     }
 
     .arrow {
@@ -996,8 +1003,14 @@ input[type=range]::-webkit-slider-runnable-track {
 
     .benefit-item {
         width: 100%;
-        max-width: 350px;
+        max-width: 340px;
         margin: 0 auto;
+    }
+
+    /* Más aire entre beneficios para que cada uno tenga su momento al scrollear */
+    .benefits-left,
+    .benefits-right {
+        gap: 14vh;
     }
 
     /* Interactive */
