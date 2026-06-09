@@ -7,7 +7,7 @@
     <title>Las Tres Niñas Vida Activa - Leche con Proteína</title>
     <meta name="description"
         content="Descubrí la nueva leche con proteína Vida Activa de Las Tres Niñas. Con 54g de proteína por litro, 0% lactosa, 0% grasas, 0% azúcares añadidos y 9 aminoácidos esenciales.">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=5">
     <link rel="icon" href="assets/logo.webp" type="image/webp">
 </head>
 
@@ -24,6 +24,8 @@
         </picture>
         <!-- Cortina azul que se desvanece revelando el KV al cargar -->
         <div class="hero-reveal"></div>
+        <!-- Destello que recorre el KV cada tanto -->
+        <div class="hero-shine"></div>
     </section>
 
     <!-- SECCIÓN 2: MANIFIESTO (Empatía) -->
@@ -59,7 +61,7 @@
                     <div class="benefit-item" data-position="left-top">
                         <div class="benefit-icon"><img src="assets/icon-muscle.webp" alt="Proteína"
                                 class="benefit-icon-img" loading="lazy"></div>
-                        <h3>54g Proteína</h3>
+                        <h3><span class="odometer" data-odometer="54">54</span>g Proteína</h3>
                         <p>Mantenimiento muscular y saciedad.</p>
                     </div>
                     <div class="benefit-item" data-position="left-middle">
@@ -175,7 +177,16 @@
                 <h2>Llenate de Energía</h2>
                 <div class="glass-container">
                     <div class="glass">
-                        <div class="milk-liquid" id="milk-liquid"></div>
+                        <div class="milk-liquid" id="milk-liquid">
+                            <svg class="milk-wave" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true">
+                                <path d="M0,10 C30,2 60,18 120,10 C180,2 210,18 240,10 L240,20 L0,20 Z"></path>
+                            </svg>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                            <span class="bubble"></span>
+                        </div>
                         <div class="measurement-lines">
                             <div class="line line-25"></div>
                             <div class="line line-50"></div>
@@ -329,7 +340,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
 </body>
 
 </html>

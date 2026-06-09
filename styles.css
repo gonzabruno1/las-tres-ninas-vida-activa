@@ -202,12 +202,37 @@ section[id] {
     100% { opacity: 0; }
 }
 
+/* Destello diagonal que recorre el KV periódicamente */
+.hero-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(100deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.18) 45%,
+            rgba(255, 255, 255, 0.35) 50%,
+            rgba(255, 255, 255, 0.18) 55%,
+            transparent 100%);
+    transform: skewX(-12deg) translateX(-120%);
+    animation: heroShine 7s ease-in-out 2.5s infinite;
+}
+
+@keyframes heroShine {
+    0%   { transform: skewX(-12deg) translateX(-120%); }
+    18%  { transform: skewX(-12deg) translateX(320%); }
+    100% { transform: skewX(-12deg) translateX(320%); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-    .hero-background, .hero-reveal {
+    .hero-background, .hero-reveal, .hero-shine {
         animation: none;
         opacity: 1;
     }
-    .hero-reveal { display: none; }
+    .hero-reveal, .hero-shine { display: none; }
 }
 
 /* --- MANIFESTO SECTION --- */
@@ -322,18 +347,17 @@ section[id] {
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 900px;        /* habilita el tilt 3D del pack */
 }
 
 .product-center-img {
     height: 650px;
     width: auto;
     filter: drop-shadow(0 20px 40px rgba(0, 35, 102, 0.3));
-    transition: transform 0.5s ease;
+    transition: transform 0.2s ease-out;
+    transform-style: preserve-3d;
+    will-change: transform;
     z-index: 2;
-}
-
-.product-center-img:hover {
-    transform: scale(1.05);
 }
 
 /* Flechas SVG */
@@ -553,9 +577,62 @@ section[id] {
     left: 0;
     width: 100%;
     height: 0%;
-    /* Dynamic */
-    background: white;
-    transition: height 0.3s ease-out;
+    /* Dynamic (JS setea la altura) */
+    background: linear-gradient(to bottom, #ffffff 0%, #eef3fb 100%);
+    transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: visible;
+}
+
+/* Ola en la superficie del líquido */
+.milk-wave {
+    position: absolute;
+    top: -9px;            /* asoma por encima del nivel del líquido */
+    left: 0;
+    width: 200%;          /* el doble de ancho para poder animar el loop */
+    height: 12px;
+    fill: #ffffff;
+    animation: waveMove 2.6s linear infinite;
+}
+
+@keyframes waveMove {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* Burbujas que suben */
+.bubble {
+    position: absolute;
+    bottom: 6px;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    opacity: 0;
+    animation: bubbleRise 3s ease-in infinite;
+}
+
+.bubble:nth-child(2) { left: 20%; width: 5px; height: 5px; animation-duration: 3.4s; animation-delay: 0.2s; }
+.bubble:nth-child(3) { left: 40%; width: 7px; height: 7px; animation-duration: 2.8s; animation-delay: 0.9s; }
+.bubble:nth-child(4) { left: 60%; width: 4px; height: 4px; animation-duration: 3.6s; animation-delay: 1.4s; }
+.bubble:nth-child(5) { left: 78%; width: 6px; height: 6px; animation-duration: 3.1s; animation-delay: 0.5s; }
+.bubble:nth-child(6) { left: 50%; width: 5px; height: 5px; animation-duration: 3.3s; animation-delay: 2.0s; }
+
+@keyframes bubbleRise {
+    0%   { transform: translateY(0);     opacity: 0; }
+    15%  { opacity: 0.9; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateY(-150px); opacity: 0; }
+}
+
+/* Vaso vacío: sin ola ni burbujas */
+.milk-liquid.empty .milk-wave,
+.milk-liquid.empty .bubble {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .milk-wave, .bubble { animation: none; }
+    .bubble { opacity: 0; }
 }
 
 .measurement-lines .line {
@@ -993,6 +1070,20 @@ input[type=range]::-webkit-slider-runnable-track {
 /* =====================================================
    ANIMACIONES
    ===================================================== */
+
+/* --- Reveal de texto palabra por palabra --- */
+.word-reveal {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.word-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* --- Parallax en scroll (movido por JS, suave y con GPU) --- */
 [data-parallax] {
