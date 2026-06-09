@@ -395,11 +395,30 @@ section[id] {
     font-family: var(--font-heading);
     font-size: 0.8rem;
     color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.85);
-    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 5px 14px;
     border-radius: 999px;
-    box-shadow: 0 2px 8px rgba(0, 35, 102, 0.15);
-    opacity: 0.85;
+    box-shadow: 0 2px 10px rgba(0, 35, 102, 0.18);
+    opacity: 0.9;
+    animation: hintPulse 2.2s ease-in-out infinite;
+}
+
+/* Pulso sutil para invitar a tocar/clickear */
+@keyframes hintPulse {
+    0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 2px 10px rgba(0, 35, 102, 0.18); }
+    50%      { transform: translateX(-50%) scale(1.06); box-shadow: 0 4px 16px rgba(0, 35, 102, 0.28); }
+}
+
+/* En desktop, al pasar el mouse por el pack, el cartelito se resalta */
+.product-flip:hover .product-flip-hint {
+    opacity: 1;
+    background: var(--color-primary);
+    color: #fff;
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-flip-hint { animation: none; }
 }
 
 /* Dorso: tarjeta con la tabla nutricional */
