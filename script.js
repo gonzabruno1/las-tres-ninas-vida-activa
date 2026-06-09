@@ -233,6 +233,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =====================================================
+       FLIP CARDS de beneficios — tocá/click para dar vuelta
+       (un tap no interrumpe el scroll: el scroll es un arrastre)
+       ===================================================== */
+    document.querySelectorAll('.benefit-item').forEach(card => {
+        const toggle = () => card.classList.toggle('flipped');
+        card.addEventListener('click', toggle);
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggle();
+            }
+        });
+    });
+
+
+    /* =====================================================
        PACK 3D — tilt con giroscopio (mobile) y mouse (desktop)
        ===================================================== */
     const pack = document.querySelector('.product-center-img');

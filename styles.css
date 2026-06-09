@@ -398,29 +398,79 @@ section[id] {
 }
 
 
+/* === FLIP CARD: frente (ícono + título) / dorso (descripción) === */
 .benefit-item {
-    background: white;
-    padding: 25px;
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+    cursor: pointer;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.benefit-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.benefit-item.flipped .benefit-inner {
+    transform: rotateY(180deg);
+}
+
+.benefit-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    width: 220px;
-    height: 220px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 14px rgba(0, 35, 102, 0.08);
+    overflow: hidden;
 }
 
-.benefit-item:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(0, 35, 102, 0.15);
+.benefit-front {
+    background: white;
+}
+
+.benefit-back {
+    background: var(--color-primary);
+    color: #ffffff;
+    transform: rotateY(180deg);
+}
+
+/* Realce en hover sin transform en el contenedor (no rompe el 3D) */
+.benefit-item:hover .benefit-face {
+    box-shadow: 0 10px 28px rgba(0, 35, 102, 0.18);
+}
+
+/* Indicador "girá la tarjeta" */
+.flip-hint {
+    position: absolute;
+    bottom: 9px;
+    right: 12px;
+    font-size: 1.05rem;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.35;
+    transition: opacity 0.3s ease, transform 0.5s ease;
+}
+
+.benefit-item:hover .flip-hint {
+    opacity: 0.7;
+    transform: rotate(90deg);
 }
 
 .benefit-icon {
-    margin-bottom: 12px;
-    height: 60px;
+    margin-bottom: 10px;
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -435,13 +485,14 @@ section[id] {
 .benefit-item h3 {
     font-family: var(--font-heading);
     color: var(--color-primary);
-    margin-bottom: 8px;
+    margin-bottom: 0;
     font-size: 1.1rem;
 }
 
 .benefit-item p {
     font-size: 0.95rem;
     line-height: 1.4;
+    margin: 0;
 }
 
 /* Specific adjustment for fats icon to balance visual size */
@@ -996,11 +1047,13 @@ input[type=range]::-webkit-slider-runnable-track {
 
     .benefit-item {
         width: 100%;
-        max-width: 340px;
+        max-width: 320px;
+        height: 175px;
+        padding: 0;
         margin: 0 auto;
     }
 
-    /* Beneficios apilados: cada card aparece al scrollear (cardPop), sin solaparse */
+    /* Beneficios apilados: cada card aparece al scrollear, sin solaparse */
     .benefits-left,
     .benefits-right {
         gap: 25px;
@@ -1030,10 +1083,18 @@ input[type=range]::-webkit-slider-runnable-track {
         margin-bottom: 10px;
     }
 
+    /* Los tres textos al MISMO ancho => misma escala visual de texto */
     .manifesto-text-img {
-        max-height: 140px;
-        max-width: 80%;
-        width: auto;
+        width: 72%;
+        max-width: 72%;
+        max-height: none;
+        height: auto;
+    }
+
+    /* Anular el agrandado especial de la 3ra en celular */
+    .manifesto-block:nth-child(3) .manifesto-text-img {
+        max-height: none;
+        margin-top: 0;
     }
 
     /* BENEFICIOS - Pack mÃ¡s grande y espaciado uniforme */
@@ -1054,12 +1115,12 @@ input[type=range]::-webkit-slider-runnable-track {
         gap: 20px;
     }
 
+    /* Flip cards en celular: un poco más chicas, alto fijo para el giro */
     .benefit-item {
         width: 100%;
-        max-width: 320px;
-        height: auto;
-        min-height: 180px;
-        padding: 20px;
+        max-width: 300px;
+        height: 165px;
+        padding: 0;
         margin: 0 auto;
     }
 
@@ -1166,20 +1227,15 @@ input[type=range]::-webkit-slider-runnable-track {
     animation: pulseBorder 1.2s ease-in-out infinite;
 }
 
-/* --- Benefit: highlight al entrar al viewport --- */
-@keyframes cardPop {
-    0%   { transform: scale(0.92); opacity: 0; }
-    60%  { transform: scale(1.03); }
-    100% { transform: scale(1);    opacity: 1; }
+/* --- Benefit: aparición al entrar al viewport (opacity only para no
+   romper el contexto 3D del flip) --- */
+.benefit-item {
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .benefit-item.is-visible {
-    animation: cardPop 0.55s ease forwards;
-}
-
-/* Mantener opacity: 0 hasta que JS la dispare */
-.benefit-item {
-    opacity: 0;
+    opacity: 1;
 }
 
 /* --- Contador animado del número 54g --- */
