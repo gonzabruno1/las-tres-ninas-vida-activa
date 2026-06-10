@@ -7,7 +7,25 @@
     <title>Las Tres Niñas Vida Activa - Leche con Proteína</title>
     <meta name="description"
         content="Descubrí la nueva leche con proteína Vida Activa de Las Tres Niñas. Con 54g de proteína por litro, 0% lactosa, 0% grasas, 0% azúcares añadidos y 9 aminoácidos esenciales.">
-    <link rel="stylesheet" href="styles.css?v=12">
+
+    <!-- Open Graph: vista previa al compartir el link (WhatsApp, Instagram, etc.) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://las-tres-ninas-vida-activa.netlify.app/">
+    <meta property="og:title" content="Vida Activa - Nueva Leche con Proteína">
+    <meta property="og:description"
+        content="54g de proteína por litro. 0% lactosa, 0% grasas, 0% azúcares añadidos. Vivir activo es una actitud.">
+    <meta property="og:image" content="https://las-tres-ninas-vida-activa.netlify.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Preload: el hero y la fuente principal cargan antes (mejor primera impresión) -->
+    <link rel="preload" as="image" href="assets/hero-image-mobile.webp" media="(orientation: portrait)">
+    <link rel="preload" as="image" href="assets/hero-image-desktop.webp" media="(orientation: landscape)">
+    <link rel="preload" as="font" href="assets/fonts/EvelethSlantW01-Bold.woff" type="font/woff" crossorigin>
+
+    <link rel="stylesheet" href="styles.css?v=13">
     <link rel="icon" href="assets/logo.webp" type="image/webp">
 </head>
 
@@ -408,6 +426,16 @@
                 <h2 class="footer-cta-title">Da el siguiente paso</h2>
                 <p class="footer-cta-subtitle">Incorporá la nueva leche Vida Activa a tu rutina y sentí la diferencia
                 </p>
+                <a href="https://www.instagram.com/lastresninasok/" target="_blank" rel="noopener"
+                    class="footer-ig-btn">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    Seguinos en Instagram
+                </a>
             </div>
             <div class="footer-legal">
                 <p>&copy; 2026 Las Tres Niñas. Todos los derechos reservados.</p>
@@ -415,7 +443,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=13"></script>
 </body>
 
 </html>

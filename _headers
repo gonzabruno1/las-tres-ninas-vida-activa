@@ -18,7 +18,12 @@
 /*.js
   Cache-Control: public, max-age=0, must-revalidate
 
-# Imágenes y fuentes: caché corto (1 hora). Bajan una vez y se reusan,
+# Imágenes: caché corto (1 hora). Bajan una vez y se reusan,
 # pero si actualizamos un render, en máximo 1 hora todos ven el nuevo.
 /assets/*
   Cache-Control: public, max-age=3600, must-revalidate
+
+# Fuentes: nunca cambian => caché de 1 año (gran ahorro de bandwidth
+# en visitas repetidas)
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

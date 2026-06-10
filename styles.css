@@ -1,6 +1,6 @@
 ﻿@font-face {
     font-family: 'EvelethSlant';
-    src: url('assets/fonts/EvelethSlantW01-Bold.ttf') format('truetype');
+    src: url('assets/fonts/EvelethSlantW01-Bold.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
     font-family: 'Distro-Bold';
-    src: url('assets/fonts/Distro-Bold.ttf') format('truetype');
+    src: url('assets/fonts/Distro-Bold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -1080,6 +1080,33 @@ input[type=range]::-webkit-slider-runnable-track {
     max-width: 500px;
     margin: 0 auto;
     text-transform: uppercase;
+}
+
+/* Botón de Instagram en el footer */
+.footer-ig-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    padding: 13px 28px;
+    background: #ffffff;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.footer-ig-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+.footer-ig-btn:active {
+    transform: scale(0.97);
 }
 
 .footer-logo img {
