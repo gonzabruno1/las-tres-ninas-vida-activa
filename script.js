@@ -38,6 +38,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =====================================================
+       FLECHA DEL HERO — se oculta al primer scroll
+       ===================================================== */
+    const scrollCue = document.getElementById('hero-scroll-cue');
+    if (scrollCue) {
+        window.addEventListener('scroll', () => {
+            scrollCue.classList.toggle('hidden', window.scrollY > 60);
+        }, { passive: true });
+    }
+
+    /* =====================================================
        SCROLL ANIMATIONS — Intersection Observer
        ===================================================== */
     const scrollObserver = new IntersectionObserver((entries) => {

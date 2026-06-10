@@ -227,12 +227,53 @@ section[id] {
     100% { transform: skewX(-12deg) translateX(320%); }
 }
 
+/* Flecha "hay más abajo": rebota suave, desaparece al primer scroll.
+   Solo en celular (portrait): el hero gana una franja azul propia
+   debajo del KV para que la flecha no tape la viñeta. */
+.hero-scroll-cue {
+    display: none;
+}
+
+@media (orientation: portrait) {
+    .hero-section {
+        padding-bottom: 58px;   /* franja azul que continúa el KV */
+    }
+
+    .hero-scroll-cue {
+        position: absolute;
+        bottom: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        color: #ffffff;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: cueBounce 2s ease-in-out 1.8s infinite both;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+}
+
+.hero-scroll-cue.hidden {
+    opacity: 0;
+}
+
+@keyframes cueBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%      { transform: translateX(-50%) translateY(-9px); }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .hero-background, .hero-reveal, .hero-shine {
         animation: none;
         opacity: 1;
     }
     .hero-reveal, .hero-shine { display: none; }
+    .hero-scroll-cue { animation: none; }
 }
 
 /* --- MANIFESTO SECTION --- */
