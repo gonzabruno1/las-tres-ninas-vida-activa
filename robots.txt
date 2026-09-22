@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://las-tres-ninas-vida-activa.netlify.app/sitemap.xml
+Sitemap: https://lastresninasvidaactiva.com.ar/sitemap.xml
