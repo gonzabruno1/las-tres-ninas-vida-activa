@@ -1,0 +1,4 @@
+# Los QR impresos apuntan al subdominio de Netlify: redirigir al dominio propio
+# (manteniendo la ruta). La rama preview-- usa otro host y no se ve afectada.
+https://las-tres-ninas-vida-activa.netlify.app/*  https://lastresninasvidaactiva.com.ar/:splat  301!
+http://las-tres-ninas-vida-activa.netlify.app/*   https://lastresninasvidaactiva.com.ar/:splat  301!
