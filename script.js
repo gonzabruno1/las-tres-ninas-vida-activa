@@ -500,7 +500,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const tables = productFlip.querySelectorAll('.nutrition[data-nutrition]');
         let found = false;
         tables.forEach(t => {
-            const match = t.dataset.nutrition === key;
+            // una tabla puede valer para varios productos (ej. Batido 1L y 200 ml)
+            const match = t.dataset.nutrition.split(' ').includes(key);
             t.hidden = !match;
             if (match) found = true;
         });
