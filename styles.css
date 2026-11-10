@@ -686,12 +686,11 @@ section[id] {
 
 .interactive-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr;
+    max-width: 680px;
 }
 
-.calculator-module,
-.visualizer-module {
+.calculator-module {
     background: rgba(255, 255, 255, 0.1);
     padding: 40px;
     border-radius: 20px;
@@ -777,156 +776,6 @@ section[id] {
 .result-sub {
     font-size: 0.9rem;
     margin-bottom: 0 !important;
-}
-
-/* Visualizer Styles */
-.glass-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
-.glass {
-    width: 120px;
-    height: 200px;
-    border: 4px solid white;
-    border-top: none;
-    border-radius: 0 0 15px 15px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.milk-liquid {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    /* Dynamic (JS setea la altura) */
-    background: linear-gradient(to bottom, #ffffff 0%, #eef3fb 100%);
-    transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: visible;
-}
-
-/* Ola en la superficie del líquido */
-.milk-wave {
-    position: absolute;
-    top: -9px;            /* asoma por encima del nivel del líquido */
-    left: 0;
-    width: 200%;          /* el doble de ancho para poder animar el loop */
-    height: 12px;
-    fill: #ffffff;
-    animation: waveMove 2.6s linear infinite;
-}
-
-@keyframes waveMove {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
-
-/* Burbujas que suben */
-.bubble {
-    position: absolute;
-    bottom: 6px;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 50%;
-    opacity: 0;
-    animation: bubbleRise 3s ease-in infinite;
-}
-
-.bubble:nth-child(2) { left: 20%; width: 5px; height: 5px; animation-duration: 3.4s; animation-delay: 0.2s; }
-.bubble:nth-child(3) { left: 40%; width: 7px; height: 7px; animation-duration: 2.8s; animation-delay: 0.9s; }
-.bubble:nth-child(4) { left: 60%; width: 4px; height: 4px; animation-duration: 3.6s; animation-delay: 1.4s; }
-.bubble:nth-child(5) { left: 78%; width: 6px; height: 6px; animation-duration: 3.1s; animation-delay: 0.5s; }
-.bubble:nth-child(6) { left: 50%; width: 5px; height: 5px; animation-duration: 3.3s; animation-delay: 2.0s; }
-
-@keyframes bubbleRise {
-    0%   { transform: translateY(0);     opacity: 0; }
-    15%  { opacity: 0.9; }
-    80%  { opacity: 0.6; }
-    100% { transform: translateY(-150px); opacity: 0; }
-}
-
-/* Vaso vacío: sin ola ni burbujas */
-.milk-liquid.empty .milk-wave,
-.milk-liquid.empty .bubble {
-    display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .milk-wave, .bubble { animation: none; }
-    .bubble { opacity: 0; }
-}
-
-.measurement-lines .line {
-    position: absolute;
-    width: 20px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.5);
-    left: -10px;
-    /* Inside visual trick */
-}
-
-/* Lines at approx functional positions */
-.line-25 {
-    bottom: 25%;
-    width: 100%;
-    left: 0;
-    border-top: 1px dashed rgba(255, 255, 255, 0.3);
-    background: transparent;
-}
-
-.line-50 {
-    bottom: 50%;
-    width: 100%;
-    left: 0;
-    border-top: 1px dashed rgba(255, 255, 255, 0.3);
-    background: transparent;
-}
-
-.line-100 {
-    bottom: 100%;
-}
-
-.visualizer-controls {
-    width: 100%;
-    padding: 0 20px;
-}
-
-input[type=range] {
-    width: 100%;
-    -webkit-appearance: none;
-    appearance: none;
-    background: transparent;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    height: 24px;
-    width: 24px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    margin-top: -10px;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-}
-
-.visualizer-feedback {
-    margin-top: 15px;
-    font-weight: bold;
-    min-height: 24px;
-    text-align: center;
 }
 
 /* --- RECIPES SECTION --- */
@@ -1290,11 +1139,6 @@ input[type=range]::-webkit-slider-runnable-track {
         height: 48px;
     }
 
-    /* Interactive */
-    .interactive-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
 }
 
 /* --- RESPONSIVE: Small Mobile (< 480px) --- */
@@ -1496,20 +1340,16 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 /* --- Módulos interactivos --- */
-.calculator-module,
-.visualizer-module {
+.calculator-module {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.calculator-module.is-visible,
-.visualizer-module.is-visible {
+.calculator-module.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
-
-.visualizer-module { transition-delay: 0.18s; }
 
 /* --- Recipe cards --- */
 .recipe-card {
@@ -1545,4 +1385,557 @@ input[type=range]::-webkit-slider-runnable-track {
     /* Recipe cards en mobile: stagger menor */
     .recipe-card:nth-child(2) { transition-delay: 0.08s; }
     .recipe-card:nth-child(3) { transition-delay: 0.16s; }
+}
+
+/* =====================================================
+   PRODUCTOS — carrusel de la línea con efectos por sabor
+   Celular: scroll horizontal con snap | Desktop: 3 cards
+   ===================================================== */
+
+/* Defs SVG compartidas (degradés y formas): ocupan 0px pero no van
+   con display:none, si no los degradés dejan de funcionar */
+.svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.products-section {
+    padding: var(--spacing-section) 0;
+    background-color: white;
+    overflow: hidden;
+}
+
+.products-section .section-title {
+    margin-bottom: 10px;
+}
+
+.section-lead {
+    text-align: center;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.products-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    padding: 10px 20px 24px;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.products-track::-webkit-scrollbar {
+    display: none;
+}
+
+.product-card {
+    flex: 0 0 min(78vw, 340px);
+    scroll-snap-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    padding: 20px 20px 24px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 14px 30px rgba(0, 35, 102, 0.18);
+}
+
+.product-card--chocolate {
+    background: linear-gradient(165deg, #d39a68 0%, #9a5a30 55%, #5a2c12 100%);
+}
+
+.product-card--latte {
+    background: linear-gradient(165deg, #f8e2bb 0%, #ecbf82 100%);
+    color: var(--color-primary);
+}
+
+.product-card--leche {
+    background: linear-gradient(165deg, var(--color-primary-light) 0%, var(--color-primary) 75%);
+}
+
+/* Escenario: splash detrás, gotas/granos alrededor, pack adelante */
+.product-stage {
+    position: relative;
+    height: 330px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.product-card-pack {
+    position: relative;
+    z-index: 2;
+    height: 300px;
+    width: auto;
+    filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.35));
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.product-card-pack.is-small {
+    height: 225px;
+}
+
+.fx-splash {
+    position: absolute;
+    left: 50%;
+    bottom: 120px;
+    width: 125%;
+    height: 200px;
+    z-index: 1;
+    opacity: 0;
+    transform: translateX(-50%) scale(0.4);
+    transform-origin: 50% 100%;
+    transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s, opacity 0.4s ease 0.15s;
+    /* la base del splash se funde con el fondo (no se ve el corte recto) */
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 95%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 95%);
+}
+
+.product-card--chocolate .fx-splash { fill: url(#grad-choco); }
+.product-card--latte .fx-splash     { fill: url(#grad-latte); }
+.product-card--leche .fx-splash     { fill: url(#grad-milk); }
+
+/* Gotas y granos: el contenedor hace la entrada, el hijo flota */
+.fx-bit {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(30px) scale(0.3);
+    transition: opacity 0.5s ease var(--d, 0.3s),
+                transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0.3s);
+    pointer-events: none;
+}
+
+.fx-bit > * {
+    display: block;
+    animation: bitFloat var(--t, 4s) ease-in-out infinite;
+}
+
+@keyframes bitFloat {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50%      { transform: translateY(-10px) rotate(calc(var(--r, 0deg) + 14deg)); }
+}
+
+.fx-drop {
+    width: var(--s);
+    height: var(--s);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #b06c40, #4a2412 60%, #2a1206);
+}
+
+.product-card--leche .fx-drop {
+    background: radial-gradient(circle at 35% 30%, #ffffff, #e3ebf8 60%, #b9c9e6);
+}
+
+.fx-bean {
+    width: var(--s);
+    height: calc(var(--s) * 0.7);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+}
+
+/* Activo: la card está centrada en pantalla (celular) o visible (desktop) */
+.products-section.in-view .product-card.is-active .product-card-pack {
+    opacity: 1;
+    transform: translateY(0) rotate(-3deg);
+}
+
+.products-section.in-view .product-card.is-active .fx-splash {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+.products-section.in-view .product-card.is-active .fx-bit {
+    opacity: 1;
+    transform: none;
+}
+
+/* Tocar el pack: saltito */
+.product-card-pack.is-poked {
+    animation: packPoke 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes packPoke {
+    0%   { transform: translateY(0) rotate(-3deg); }
+    40%  { transform: translateY(-22px) rotate(4deg) scale(1.04); }
+    100% { transform: translateY(0) rotate(-3deg); }
+}
+
+/* Cambio de formato (1L / 200 ml): el pack baja y vuelve a subir */
+.product-card-pack.is-swapping {
+    opacity: 0 !important;
+    transform: translateY(40px) scale(0.92) !important;
+    transition-duration: 0.25s;
+}
+
+/* Desktop: hover levanta el pack y agranda el splash */
+@media (hover: hover) and (pointer: fine) {
+    .products-section.in-view .product-card.is-active:hover .product-card-pack {
+        transform: translateY(-10px) rotate(-6deg) scale(1.04);
+    }
+
+    .products-section.in-view .product-card.is-active:hover .fx-splash {
+        transform: translateX(-50%) scale(1.08);
+    }
+}
+
+.product-card-info {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.product-card-tag {
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--color-primary);
+}
+
+.product-card--latte .product-card-tag {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+.product-card-tag--ghost {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.product-card-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.product-card-format,
+.product-card-stat {
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+.product-card-format {
+    opacity: 0.8;
+}
+
+.product-card-stat strong {
+    font-family: var(--font-heading);
+    text-transform: none;
+    font-size: 1.6rem;
+    font-weight: normal;
+}
+
+.format-switch {
+    display: inline-flex;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.format-btn {
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 999px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.format-btn.active {
+    background: #ffffff;
+    color: #4a2412;
+}
+
+.product-card-cta {
+    margin-top: 6px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    background: transparent;
+    color: inherit;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.product-card-cta:hover {
+    background: #ffffff;
+    color: var(--color-primary);
+}
+
+.product-card--latte .product-card-cta:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Puntitos del carrusel (solo celular) */
+.products-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.products-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(0, 35, 102, 0.2);
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.products-dot.active {
+    width: 22px;
+    background: var(--color-primary);
+}
+
+@media (min-width: 1000px) {
+    .products-track {
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .product-card {
+        flex: 0 1 360px;
+    }
+
+    .products-dots {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-card-pack,
+    .fx-splash,
+    .fx-bit {
+        transition: none;
+    }
+    .fx-bit > * { animation: none; }
+}
+
+/* =====================================================
+   BENEFICIOS — selector de producto
+   ===================================================== */
+.product-picker {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 4px 2px;
+}
+
+.product-picker::-webkit-scrollbar {
+    display: none;
+}
+
+.picker-btn {
+    flex: 0 0 auto;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 2px solid var(--color-primary);
+    background: #ffffff;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.picker-btn.active {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+/* Los packs de 200 ml son más bajitos que los de 1L */
+.product-flip.is-small .product-center-img {
+    height: 78%;
+}
+
+/* Cambio de producto: el pack se desvanece y vuelve */
+.product-front {
+    transition: opacity 0.25s ease;
+}
+
+.product-flip.is-swapping .product-front {
+    opacity: 0;
+}
+
+.nutrition-pending .nutrition-portion {
+    font-size: 0.9rem;
+    margin-top: 8px;
+}
+
+/* =====================================================
+   MOMENTOS — uno para cada momento del día
+   ===================================================== */
+.moments-section {
+    padding: var(--spacing-section) 0;
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.moments-section .section-title {
+    color: #ffffff;
+}
+
+.moments-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.moment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 24px 20px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.moment-pack {
+    height: 170px;
+    width: auto;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.35));
+}
+
+.moment-pack.is-small {
+    height: 125px;
+    margin-top: 45px;
+}
+
+.moment-time {
+    display: inline-block;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #ffffff;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+.moment h3 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.15;
+    margin-bottom: 6px;
+}
+
+.moment p {
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    line-height: 1.3;
+    opacity: 0.85;
+}
+
+/* Recetas: con qué producto se hace cada una */
+.recipe-product {
+    align-self: flex-start;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    line-height: 1;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #eef3fb;
+    color: var(--color-primary);
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    /* Momentos: lista vertical, pack a la izquierda */
+    .moments-list {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .moment {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 18px;
+        padding: 16px 18px;
+    }
+
+    .moment-pack,
+    .moment-pack.is-small {
+        flex: 0 0 auto;
+        width: 58px;
+        height: auto;
+        margin: 0;
+    }
+
+    .moment-pack.is-small {
+        width: 50px;
+    }
+
+    .product-picker {
+        justify-content: flex-start;
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-picker {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .picker-btn {
+        font-size: 0.85rem;
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-section .section-title,
+    .moments-section .section-title {
+        font-size: 2.2rem;
+    }
 }

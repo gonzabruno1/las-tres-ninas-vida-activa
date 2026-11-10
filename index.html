@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Las Tres Niñas Vida Activa - Leche con Proteína</title>
+    <title>Las Tres Niñas Vida Activa - Leche, Batido y Latte con Proteína</title>
     <meta name="description"
-        content="Descubrí la nueva leche con proteína Vida Activa de Las Tres Niñas. Con 54g de proteína por litro, 0% lactosa, 0% grasas, 0% azúcares añadidos y 9 aminoácidos esenciales.">
+        content="Conocé la línea Vida Activa de Las Tres Niñas: leche, batido de chocolate y latte con proteína. 0% lactosa, 0% grasas, 0% azúcares añadidos y 9 aminoácidos esenciales.">
 
     <!-- Open Graph: vista previa al compartir el link (WhatsApp, Instagram, etc.) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lastresninasvidaactiva.com.ar/">
-    <meta property="og:title" content="Vida Activa - Nueva Leche con Proteína">
+    <meta property="og:title" content="Vida Activa - Leche, Batido y Latte con Proteína">
     <meta property="og:description"
-        content="54g de proteína por litro. 0% lactosa, 0% grasas, 0% azúcares añadidos. Vivir activo es una actitud.">
+        content="Ahora también en batido de chocolate y latte. 11g de proteína por porción, 0% lactosa, 0% grasas, 0% azúcares añadidos. Vivir activo es una actitud.">
     <meta property="og:image" content="https://lastresninasvidaactiva.com.ar/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -25,11 +25,43 @@
     <link rel="preload" as="image" href="assets/hero-image-desktop.webp?v=2" media="(orientation: landscape)">
     <link rel="preload" as="font" href="assets/fonts/EvelethSlantW01-Bold.woff" type="font/woff" crossorigin>
 
-    <link rel="stylesheet" href="styles.css?v=14">
+    <link rel="stylesheet" href="styles.css?v=16">
     <link rel="icon" href="assets/logo.webp?v=2" type="image/webp">
 </head>
 
 <body>
+
+    <!-- Formas y degradés compartidos por los efectos de las cards de producto -->
+    <svg class="svg-defs" aria-hidden="true" focusable="false">
+        <defs>
+            <linearGradient id="grad-choco" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#9a5a30" />
+                <stop offset="55%" stop-color="#5a2c12" />
+                <stop offset="100%" stop-color="#3a1b0b" />
+            </linearGradient>
+            <linearGradient id="grad-latte" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fff6e6" />
+                <stop offset="100%" stop-color="#d9a066" />
+            </linearGradient>
+            <linearGradient id="grad-milk" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="100%" stop-color="#cfdcf3" />
+            </linearGradient>
+            <symbol id="fx-splash-shape" viewBox="0 0 300 220">
+                <path d="M10,220 C18,172 38,150 60,160 C54,122 68,84 85,96 C90,62 100,30 112,70 C120,100 130,110 140,90
+                         C150,50 160,18 172,60 C178,86 190,100 200,80 C210,55 225,40 232,75 C238,105 250,120 265,110
+                         C282,100 292,150 290,220 Z" />
+                <ellipse cx="112" cy="44" rx="7" ry="9" />
+                <ellipse cx="172" cy="30" rx="6" ry="8" />
+                <ellipse cx="232" cy="50" rx="5" ry="7" />
+            </symbol>
+            <symbol id="fx-bean" viewBox="0 0 40 28">
+                <ellipse cx="20" cy="14" rx="19" ry="13" fill="#5b3118" />
+                <ellipse cx="16" cy="10" rx="9" ry="5" fill="#7a4524" opacity="0.6" />
+                <path d="M5 17 C14 7, 26 22, 35 11" stroke="#2b1408" stroke-width="3" fill="none" stroke-linecap="round" />
+            </symbol>
+        </defs>
+    </svg>
 
     <!-- SECCIÓN 1: HERO (Impacto) - Imagen KV completa + entrada animada -->
     <section class="hero-section">
@@ -37,7 +69,7 @@
         <picture class="hero-picture">
             <source srcset="assets/hero-image-mobile.webp?v=2" media="(orientation: portrait)">
             <img src="assets/hero-image-desktop.webp?v=2"
-                alt="Las Tres Niñas Vida Activa - Nueva leche con proteína, 54g por litro. Vivir activo es una actitud."
+                alt="Las Tres Niñas Vida Activa - Leche con proteína, 54g por litro. Vivir activo es una actitud."
                 class="hero-background" fetchpriority="high">
         </picture>
         <!-- Cortina azul que se desvanece revelando el KV al cargar -->
@@ -53,46 +85,107 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: MANIFIESTO (Empatía) -->
-    <section class="manifesto-section">
+    <!-- SECCIÓN 2: PRODUCTOS (la línea) - carrusel con splash, granos y leche -->
+    <section class="products-section" id="productos">
         <div class="container">
-            <div class="manifesto-grid">
-                <div class="manifesto-block">
-                    <img src="assets/icon-2.webp?v=2" alt="Bienestar" class="manifesto-icon-img" loading="lazy">
-                    <img src="assets/manifesto-proteinas.webp?v=2"
-                        alt="¿Quién dijo que las proteínas son solo para los que levantan pesas?"
-                        class="manifesto-text-img" loading="lazy">
+            <h2 class="section-title">Elegí tu Vida Activa</h2>
+            <p class="section-lead">Ahora también en batido de chocolate y latte</p>
+        </div>
+
+        <div class="products-track" id="products-track">
+            <!-- Batido de chocolate (1L / 200 ml) -->
+            <article class="product-card product-card--chocolate" data-card="chocolate">
+                <div class="product-stage">
+                    <svg class="fx-splash" aria-hidden="true"><use href="#fx-splash-shape" /></svg>
+                    <span class="fx-bit" style="--x:10%; --y:16%; --d:.35s; --t:3.6s"><span class="fx-drop" style="--s:16px"></span></span>
+                    <span class="fx-bit" style="--x:80%; --y:10%; --d:.45s; --t:4.2s"><span class="fx-drop" style="--s:11px"></span></span>
+                    <span class="fx-bit" style="--x:86%; --y:42%; --d:.55s; --t:3.9s"><span class="fx-drop" style="--s:20px"></span></span>
+                    <span class="fx-bit" style="--x:6%; --y:52%; --d:.65s; --t:4.6s"><span class="fx-drop" style="--s:9px"></span></span>
+                    <img src="assets/pack-chocolate-1l.webp" alt="Vida Activa Batido con Proteína Chocolate 1L"
+                        class="product-card-pack" width="361" height="1100" loading="lazy">
                 </div>
-                <div class="manifesto-block">
-                    <img src="assets/icon-1.webp?v=2" alt="Actividad" class="manifesto-icon-img" loading="lazy">
-                    <img src="assets/manifesto-bienestar.webp?v=2" alt="¿O que el bienestar se mide en kilómetros corridos?"
-                        class="manifesto-text-img" loading="lazy">
+                <div class="product-card-info">
+                    <span class="product-card-tag">Nuevo</span>
+                    <h3>Batido de Chocolate</h3>
+                    <div class="format-switch" role="group" aria-label="Formato">
+                        <button type="button" class="format-btn active" data-format="chocolate-1l">1 L</button>
+                        <button type="button" class="format-btn" data-format="chocolate-200">200 ml</button>
+                    </div>
+                    <p class="product-card-stat"><strong>54g</strong> de proteína por litro</p>
+                    <button type="button" class="product-card-cta" data-goto="chocolate-1l">Ver beneficios</button>
                 </div>
-                <div class="manifesto-block">
-                    <img src="assets/icon-3.webp?v=2" alt="Vida Activa" class="manifesto-icon-img" loading="lazy">
-                    <img src="assets/manifesto-vidaactiva.webp?v=2"
-                        alt="Vida Activa porque creemos que estar bien es mucho más que eso" class="manifesto-text-img" loading="lazy">
+            </article>
+
+            <!-- Latte vainilla 200 ml -->
+            <article class="product-card product-card--latte" data-card="latte">
+                <div class="product-stage">
+                    <svg class="fx-splash" aria-hidden="true"><use href="#fx-splash-shape" /></svg>
+                    <span class="fx-bit" style="--x:6%; --y:14%; --d:.35s; --t:4.1s; --r:-25deg"><svg class="fx-bean" style="--s:34px"><use href="#fx-bean" /></svg></span>
+                    <span class="fx-bit" style="--x:78%; --y:8%; --d:.45s; --t:3.7s; --r:30deg"><svg class="fx-bean" style="--s:26px"><use href="#fx-bean" /></svg></span>
+                    <span class="fx-bit" style="--x:82%; --y:46%; --d:.55s; --t:4.5s; --r:-60deg"><svg class="fx-bean" style="--s:38px"><use href="#fx-bean" /></svg></span>
+                    <span class="fx-bit" style="--x:4%; --y:56%; --d:.65s; --t:3.9s; --r:15deg"><svg class="fx-bean" style="--s:22px"><use href="#fx-bean" /></svg></span>
+                    <img src="assets/pack-latte-200.webp" alt="Vida Activa Latte con Proteína sabor Vainilla 200 ml"
+                        class="product-card-pack is-small" width="316" height="760" loading="lazy">
                 </div>
-            </div>
+                <div class="product-card-info">
+                    <span class="product-card-tag">Nuevo</span>
+                    <h3>Latte Vainilla</h3>
+                    <p class="product-card-format">200 ml</p>
+                    <p class="product-card-stat"><strong>11g</strong> de proteína por cajita</p>
+                    <button type="button" class="product-card-cta" data-goto="latte">Ver beneficios</button>
+                </div>
+            </article>
+
+            <!-- Leche con proteína 1L -->
+            <article class="product-card product-card--leche" data-card="leche">
+                <div class="product-stage">
+                    <svg class="fx-splash" aria-hidden="true"><use href="#fx-splash-shape" /></svg>
+                    <span class="fx-bit" style="--x:10%; --y:18%; --d:.35s; --t:3.8s"><span class="fx-drop" style="--s:14px"></span></span>
+                    <span class="fx-bit" style="--x:82%; --y:12%; --d:.45s; --t:4.4s"><span class="fx-drop" style="--s:10px"></span></span>
+                    <span class="fx-bit" style="--x:84%; --y:44%; --d:.55s; --t:3.6s"><span class="fx-drop" style="--s:18px"></span></span>
+                    <img src="assets/pack-leche-1l.webp" alt="Vida Activa Leche con Proteína 1L"
+                        class="product-card-pack" width="361" height="1100" loading="lazy">
+                </div>
+                <div class="product-card-info">
+                    <span class="product-card-tag product-card-tag--ghost">El original</span>
+                    <h3>Leche con Proteína</h3>
+                    <p class="product-card-format">1 L</p>
+                    <p class="product-card-stat"><strong>54g</strong> de proteína por litro</p>
+                    <button type="button" class="product-card-cta" data-goto="leche">Ver beneficios</button>
+                </div>
+            </article>
+        </div>
+
+        <div class="products-dots" id="products-dots" aria-hidden="true">
+            <span class="products-dot active"></span>
+            <span class="products-dot"></span>
+            <span class="products-dot"></span>
         </div>
     </section>
 
-    <!-- SECCIÓN 3: BENEFICIOS (Racional) -->
-    <section class="benefits-section">
+    <!-- SECCIÓN 3: BENEFICIOS (Racional) - con selector de producto -->
+    <section class="benefits-section" id="beneficios">
         <div class="container">
+            <div class="product-picker" role="tablist" aria-label="Elegí un producto">
+                <button type="button" class="picker-btn active" role="tab" aria-selected="true" data-product="leche">Leche 1L</button>
+                <button type="button" class="picker-btn" role="tab" aria-selected="false" data-product="chocolate-1l">Batido 1L</button>
+                <button type="button" class="picker-btn" role="tab" aria-selected="false" data-product="chocolate-200">Batido 200ml</button>
+                <button type="button" class="picker-btn" role="tab" aria-selected="false" data-product="latte">Latte 200ml</button>
+            </div>
+
             <div class="benefits-layout">
                 <!-- Beneficios Izquierda -->
                 <div class="benefits-column benefits-left">
-                    <div class="benefit-item" data-position="left-top" tabindex="0" role="button" aria-label="54g Proteína. Tocá para ver más.">
+                    <div class="benefit-item" data-position="left-top" tabindex="0" role="button" aria-label="Proteína. Tocá para ver más.">
                         <div class="benefit-inner">
                             <div class="benefit-face benefit-front">
                                 <div class="benefit-icon"><img src="assets/icon-muscle.webp?v=2" alt="Proteína"
                                         class="benefit-icon-img" loading="lazy"></div>
-                                <h3><span class="odometer" data-odometer="54">54</span>g Proteína</h3>
+                                <h3><span class="odometer" id="benefit-protein" data-odometer="54">54</span>g Proteína</h3>
                                 <span class="flip-hint" aria-hidden="true">↻</span>
                             </div>
                             <div class="benefit-face benefit-back">
-                                <p>Mantenimiento muscular y saciedad.</p>
+                                <p id="benefit-protein-note">54g por litro. Mantenimiento muscular y saciedad.</p>
                             </div>
                         </div>
                     </div>
@@ -169,12 +262,14 @@
                         <div class="product-flip" id="product-flip" role="button" tabindex="0"
                             aria-label="Pack Vida Activa. Tocá para ver la información nutricional.">
                             <div class="product-face product-front">
-                                <img src="assets/product.webp?v=2" alt="Vida Activa - Leche con Proteína"
-                                    class="product-center-img" loading="lazy">
+                                <img src="assets/pack-leche-1l.webp" alt="Vida Activa Leche con Proteína 1L"
+                                    class="product-center-img" id="benefits-pack" loading="lazy">
                                 <span class="product-flip-hint" aria-hidden="true">↻ Info nutricional</span>
                             </div>
                             <div class="product-face product-back">
-                                <div class="nutrition">
+                                <!-- Una tabla por producto (data-nutrition). Si un producto
+                                     todavía no tiene tabla, se muestra el aviso de abajo. -->
+                                <div class="nutrition" data-nutrition="leche">
                                     <h4 class="nutrition-title">Información Nutricional</h4>
                                     <p class="nutrition-portion">Porción 200 ml (1 vaso)</p>
                                     <table class="nutrition-table">
@@ -204,6 +299,10 @@
                                     </table>
                                     <p class="nutrition-foot">*% Valores Diarios con base a una dieta de 2000 kcal.</p>
                                 </div>
+                                <div class="nutrition nutrition-pending" hidden>
+                                    <h4 class="nutrition-title">Información Nutricional</h4>
+                                    <p class="nutrition-portion">Consultá la tabla nutricional completa en el envase.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -211,16 +310,16 @@
 
                 <!-- Beneficios Derecha -->
                 <div class="benefits-column benefits-right">
-                    <div class="benefit-item" data-position="right-top" tabindex="0" role="button" aria-label="0% Azúcares. Tocá para ver más.">
+                    <div class="benefit-item" data-position="right-top" tabindex="0" role="button" aria-label="0% Azúcares añadidos. Tocá para ver más.">
                         <div class="benefit-inner">
                             <div class="benefit-face benefit-front">
-                                <div class="benefit-icon"><img src="assets/icon-azucares.webp?v=2" alt="Sin Azúcares"
+                                <div class="benefit-icon"><img src="assets/icon-azucares.webp?v=2" alt="Sin Azúcares añadidos"
                                         class="benefit-icon-img" loading="lazy"></div>
-                                <h3>0% Azúcares</h3>
+                                <h3>0% Azúcares añadidos</h3>
                                 <span class="flip-hint" aria-hidden="true">↻</span>
                             </div>
                             <div class="benefit-face benefit-back">
-                                <p>Sabor natural, sin agregados.</p>
+                                <p>Sin azúcares agregados.</p>
                             </div>
                         </div>
                     </div>
@@ -242,10 +341,74 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 4: INTERACTIVIDAD (Engagement) -->
+    <!-- SECCIÓN 4: MOMENTOS (Uso) - un Vida Activa para cada momento del día -->
+    <section class="moments-section" id="momentos">
+        <div class="container">
+            <h2 class="section-title">Uno para cada momento</h2>
+            <ol class="moments-list">
+                <li class="moment fade-in-up stagger-1">
+                    <img src="assets/pack-leche-1l.webp" alt="Leche con Proteína 1L" class="moment-pack" loading="lazy">
+                    <div class="moment-text">
+                        <span class="moment-time">Desayuno</span>
+                        <h3>Leche con Proteína</h3>
+                        <p>Sumala al licuado, al café con leche o a tus pancakes.</p>
+                    </div>
+                </li>
+                <li class="moment fade-in-up stagger-2">
+                    <img src="assets/pack-latte-200.webp" alt="Latte Vainilla 200 ml" class="moment-pack is-small" loading="lazy">
+                    <div class="moment-text">
+                        <span class="moment-time">El corte de la tarde</span>
+                        <h3>Latte Vainilla</h3>
+                        <p>Sabor a café y vainilla, listo para llevar.</p>
+                    </div>
+                </li>
+                <li class="moment fade-in-up stagger-3">
+                    <img src="assets/pack-chocolate-200.webp" alt="Batido de Chocolate 200 ml" class="moment-pack is-small" loading="lazy">
+                    <div class="moment-text">
+                        <span class="moment-time">Post-entreno</span>
+                        <h3>Batido 200 ml</h3>
+                        <p>En la mochila, bien frío. 11g de proteína por cajita.</p>
+                    </div>
+                </li>
+                <li class="moment fade-in-up stagger-4">
+                    <img src="assets/pack-chocolate-1l.webp" alt="Batido de Chocolate 1L" class="moment-pack" loading="lazy">
+                    <div class="moment-text">
+                        <span class="moment-time">En casa</span>
+                        <h3>Batido 1L</h3>
+                        <p>En la heladera, para un vaso cuando quieras.</p>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 5: MANIFIESTO (Empatía) -->
+    <section class="manifesto-section">
+        <div class="container">
+            <div class="manifesto-grid">
+                <div class="manifesto-block">
+                    <img src="assets/icon-2.webp?v=2" alt="Bienestar" class="manifesto-icon-img" loading="lazy">
+                    <img src="assets/manifesto-proteinas.webp?v=2"
+                        alt="¿Quién dijo que las proteínas son solo para los que levantan pesas?"
+                        class="manifesto-text-img" loading="lazy">
+                </div>
+                <div class="manifesto-block">
+                    <img src="assets/icon-1.webp?v=2" alt="Actividad" class="manifesto-icon-img" loading="lazy">
+                    <img src="assets/manifesto-bienestar.webp?v=2" alt="¿O que el bienestar se mide en kilómetros corridos?"
+                        class="manifesto-text-img" loading="lazy">
+                </div>
+                <div class="manifesto-block">
+                    <img src="assets/icon-3.webp?v=2" alt="Vida Activa" class="manifesto-icon-img" loading="lazy">
+                    <img src="assets/manifesto-vidaactiva.webp?v=2"
+                        alt="Vida Activa porque creemos que estar bien es mucho más que eso" class="manifesto-text-img" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 6: CALCULADORA (Engagement) -->
     <section class="interactive-section">
         <div class="container interactive-grid">
-            <!-- Módulo A: Calculadora -->
             <div class="calculator-module">
                 <h2>¿Sabés cuánta proteína necesitás?</h2>
                 <p>Te ayudamos a calcularlo según tus necesidades.</p>
@@ -267,44 +430,15 @@
 
                     <div id="calc-result" class="result-box hidden">
                         <p class="result-text">Tu cuerpo necesita aprox. <span id="protein-grams">0</span> gramos.</p>
-                        <p class="result-sub">Con 1 vaso de Vida Activa ya cubrís 10.8g de forma fácil.</p>
+                        <p class="result-sub">Cada vaso o cajita de Vida Activa te suma 11g: cerca del
+                            <span id="protein-share">0</span>% de lo que necesitás por día.</p>
                     </div>
                 </form>
-            </div>
-
-            <!-- Módulo B: Visualizador -->
-            <div class="visualizer-module">
-                <h2>Llenate de Energía</h2>
-                <div class="glass-container">
-                    <div class="glass">
-                        <div class="milk-liquid" id="milk-liquid">
-                            <svg class="milk-wave" viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true">
-                                <path d="M0,10 C30,2 60,18 120,10 C180,2 210,18 240,10 L240,20 L0,20 Z"></path>
-                            </svg>
-                            <span class="bubble"></span>
-                            <span class="bubble"></span>
-                            <span class="bubble"></span>
-                            <span class="bubble"></span>
-                            <span class="bubble"></span>
-                        </div>
-                        <div class="measurement-lines">
-                            <div class="line line-25"></div>
-                            <div class="line line-50"></div>
-                            <div class="line line-100"></div>
-                        </div>
-                    </div>
-                    <div class="visualizer-controls">
-                        <input type="range" id="milk-slider" min="0" max="100" value="0">
-                    </div>
-                    <div class="visualizer-feedback" id="visualizer-feedback">
-                        Deslizá para servir
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN 5: RECETAS (Appetite Appeal) -->
+    <!-- SECCIÓN 7: RECETAS (Appetite Appeal) -->
     <section class="recipes-section">
         <div class="container">
             <h2 class="section-title" data-parallax="0.08">Activa tus recetas</h2>
@@ -313,6 +447,7 @@
                 <div class="recipe-card" data-recipe="pancakes">
                     <div class="recipe-image" style="background-image: url('assets/pancakes-closeup.webp?v=2');"></div>
                     <div class="recipe-content">
+                        <span class="recipe-product">Con Leche Vida Activa</span>
                         <h3>Pancakes Proteicos</h3>
                         <p class="recipe-intro">"Desayuno de campeones. Avena, huevo y Vida Activa."</p>
 
@@ -353,6 +488,7 @@
                 <div class="recipe-card" data-recipe="smoothie">
                     <div class="recipe-image" style="background-image: url('assets/smoothie.webp?v=2');"></div>
                     <div class="recipe-content">
+                        <span class="recipe-product">Con Leche Vida Activa</span>
                         <h3>Licuado "Power Start"</h3>
                         <p class="recipe-intro">"Banana, avena y Vida Activa. Energía lista en 2 minutos."</p>
 
@@ -390,6 +526,7 @@
                 <div class="recipe-card" data-recipe="iced-coffee">
                     <div class="recipe-image" style="background-image: url('assets/iced-coffee.webp?v=2');"></div>
                     <div class="recipe-content">
+                        <span class="recipe-product">Con Leche Vida Activa</span>
                         <h3>Iced Coffee Proteico</h3>
                         <p class="recipe-intro">"El corte de la tarde. Café frío + espuma de proteína."</p>
 
@@ -426,12 +563,12 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 6: FOOTER (Confianza) -->
+    <!-- SECCIÓN 8: FOOTER (Confianza) -->
     <footer class="footer-section">
         <div class="container footer-content">
             <div class="footer-cta">
                 <h2 class="footer-cta-title">Da el siguiente paso</h2>
-                <p class="footer-cta-subtitle">Incorporá la nueva leche Vida Activa a tu rutina y sentí la diferencia
+                <p class="footer-cta-subtitle">Sumá Vida Activa a tu rutina y sentí la diferencia
                 </p>
                 <a href="https://www.instagram.com/lastresninasok/" target="_blank" rel="noopener"
                     class="footer-ig-btn">
@@ -450,7 +587,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=14"></script>
+    <script src="script.js?v=16"></script>
 </body>
 
 </html>

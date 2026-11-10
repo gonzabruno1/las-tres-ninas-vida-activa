@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '.manifesto-block',
         '.benefit-item',
         '.calculator-module',
-        '.visualizer-module',
+        '.fade-in-up',
         '.recipe-card',
         '.footer-cta'
     ];
@@ -80,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const activityBtns = document.querySelectorAll('.activity-btn');
     const resultBox = document.getElementById('calc-result');
     const proteinGrams = document.getElementById('protein-grams');
+    const proteinShare = document.getElementById('protein-share');
+    const PROTEIN_PER_SERVING = 11; // g por vaso (200 ml) o por cajita
     let activityMultiplier = 2.0;
 
     activityBtns.forEach(btn => {
@@ -99,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (weight > 0) {
             const grams = Math.round(weight * activityMultiplier);
             animateNumber(proteinGrams, grams);
+            animateNumber(proteinShare, Math.round(PROTEIN_PER_SERVING / grams * 100));
             resultBox.classList.remove('hidden');
             // Festejo solo la primera vez que aparece el resultado
             if (!lastResultShown && !prefersReducedMotion) {
@@ -182,32 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         requestAnimationFrame(update);
     }
-
-
-    /* =====================================================
-       VISUALIZADOR DE VASO
-       ===================================================== */
-    const slider = document.getElementById('milk-slider');
-    const liquid = document.getElementById('milk-liquid');
-    const feedback = document.getElementById('visualizer-feedback');
-
-    if (liquid) liquid.classList.add('empty'); // arranca vacío
-
-    slider.addEventListener('input', (e) => {
-        const val = parseInt(e.target.value);
-        liquid.style.height = `${val}%`;
-        liquid.classList.toggle('empty', val === 0);
-
-        if (val < 25) {
-            feedback.innerText = 'Deslizá para servir';
-        } else if (val < 50) {
-            feedback.innerText = '~5g de Proteína — ideal para el café';
-        } else if (val < 90) {
-            feedback.innerText = '~10g de Proteína — tu merienda perfecta';
-        } else {
-            feedback.innerText = '~20g de Proteína — recuperación total';
-        }
-    });
 
 
     /* =====================================================
@@ -368,5 +345,179 @@ document.addEventListener('DOMContentLoaded', () => {
 
         titles.forEach(t => wordObserver.observe(t));
     }
+
+
+    /* =====================================================
+       PRODUCTOS DE LA LÍNEA — datos compartidos por el
+       carrusel y el selector de beneficios
+       ===================================================== */
+    const PRODUCTS = {
+        'leche': {
+            img: 'assets/pack-leche-1l.webp',
+            alt: 'Vida Activa Leche con Proteína 1L',
+            protein: 54,
+            stat: '<strong>54g</strong> de proteína por litro',
+            note: '54g por litro. Mantenimiento muscular y saciedad.',
+            small: false
+        },
+        'chocolate-1l': {
+            img: 'assets/pack-chocolate-1l.webp',
+            alt: 'Vida Activa Batido con Proteína Chocolate 1L',
+            protein: 54,
+            stat: '<strong>54g</strong> de proteína por litro',
+            note: '54g por litro, 11g por porción. Mantenimiento muscular y saciedad.',
+            small: false
+        },
+        'chocolate-200': {
+            img: 'assets/pack-chocolate-200.webp',
+            alt: 'Vida Activa Batido con Proteína Chocolate 200 ml',
+            protein: 11,
+            stat: '<strong>11g</strong> de proteína por cajita',
+            note: '11g por cajita. Mantenimiento muscular y saciedad.',
+            small: true
+        },
+        'latte': {
+            img: 'assets/pack-latte-200.webp',
+            alt: 'Vida Activa Latte con Proteína sabor Vainilla 200 ml',
+            protein: 11,
+            stat: '<strong>11g</strong> de proteína por cajita',
+            note: '11g por cajita. Mantenimiento muscular y saciedad.',
+            small: true
+        }
+    };
+
+
+    /* =====================================================
+       CARRUSEL DE PRODUCTOS — la card centrada se "activa"
+       (sube el pack, aparece el splash, flotan gotas/granos)
+       ===================================================== */
+    const productsSection = document.getElementById('productos');
+    const track = document.getElementById('products-track');
+    const productCards = Array.from(document.querySelectorAll('.product-card'));
+    const dots = Array.from(document.querySelectorAll('.products-dot'));
+
+    if (productsSection && track) {
+        // Los efectos arrancan recién cuando la sección entra en pantalla
+        const sectionObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                productsSection.classList.add('in-view');
+                sectionObserver.disconnect();
+            }
+        }, { threshold: 0.25 });
+        sectionObserver.observe(productsSection);
+
+        // Card activa: la que ocupa la mayor parte del carrusel
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                entry.target.classList.toggle('is-active', entry.intersectionRatio >= 0.6);
+            });
+            const activeIndex = productCards.findIndex(c => c.classList.contains('is-active'));
+            if (activeIndex >= 0) {
+                dots.forEach((d, i) => d.classList.toggle('active', i === activeIndex));
+            }
+        }, { root: track, threshold: [0, 0.6, 1] });
+        productCards.forEach(card => cardObserver.observe(card));
+
+        // Tocar el pack: saltito
+        productCards.forEach(card => {
+            const stage = card.querySelector('.product-stage');
+            const img = card.querySelector('.product-card-pack');
+            stage.addEventListener('click', () => {
+                if (prefersReducedMotion) return;
+                img.classList.remove('is-poked');
+                void img.offsetWidth; // reinicia la animación
+                img.classList.add('is-poked');
+            });
+            img.addEventListener('animationend', () => img.classList.remove('is-poked'));
+        });
+
+        // Batido de chocolate: cambio de formato 1L / 200 ml
+        document.querySelectorAll('.format-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('.product-card');
+                const product = PRODUCTS[btn.dataset.format];
+                const img = card.querySelector('.product-card-pack');
+                card.querySelectorAll('.format-btn').forEach(b => b.classList.toggle('active', b === btn));
+                card.querySelector('.product-card-stat').innerHTML = product.stat;
+                card.querySelector('.product-card-cta').dataset.goto = btn.dataset.format;
+
+                img.classList.add('is-swapping');
+                setTimeout(() => {
+                    img.src = product.img;
+                    img.alt = product.alt;
+                    img.classList.toggle('is-small', product.small);
+                    img.classList.remove('is-swapping');
+                }, 250);
+            });
+        });
+
+        // "Ver beneficios": elige ese producto en la sección de beneficios
+        document.querySelectorAll('.product-card-cta').forEach(btn => {
+            btn.addEventListener('click', () => {
+                selectProduct(btn.dataset.goto);
+                document.getElementById('beneficios').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    }
+
+
+    /* =====================================================
+       BENEFICIOS — selector de producto (cambia el pack,
+       los gramos de proteína y la tabla nutricional)
+       ===================================================== */
+    const pickerBtns = document.querySelectorAll('.picker-btn');
+    const productFlip = document.getElementById('product-flip');
+    const benefitsPack = document.getElementById('benefits-pack');
+    const proteinValue = document.getElementById('benefit-protein');
+    const proteinNote = document.getElementById('benefit-protein-note');
+
+    function selectProduct(key) {
+        const product = PRODUCTS[key];
+        if (!product) return;
+
+        pickerBtns.forEach(b => {
+            const active = b.dataset.product === key;
+            b.classList.toggle('active', active);
+            b.setAttribute('aria-selected', active);
+            // En celular la fila de botones scrollea: centrar el elegido
+            if (active) {
+                const picker = b.parentElement;
+                picker.scrollTo({ left: b.offsetLeft - (picker.clientWidth - b.offsetWidth) / 2, behavior: 'smooth' });
+            }
+        });
+
+        // Pack: se desvanece, cambia y vuelve (y se muestra de frente)
+        productFlip.classList.remove('flipped');
+        productFlip.classList.add('is-swapping');
+        setTimeout(() => {
+            benefitsPack.src = product.img;
+            benefitsPack.alt = product.alt;
+            productFlip.classList.toggle('is-small', product.small);
+            productFlip.classList.remove('is-swapping');
+        }, 250);
+
+        // Tabla nutricional del producto, o aviso si todavía no está cargada
+        const tables = productFlip.querySelectorAll('.nutrition[data-nutrition]');
+        let found = false;
+        tables.forEach(t => {
+            const match = t.dataset.nutrition === key;
+            t.hidden = !match;
+            if (match) found = true;
+        });
+        productFlip.querySelector('.nutrition-pending').hidden = found;
+
+        // Gramos de proteína
+        proteinValue.dataset.odometer = product.protein;
+        if (prefersReducedMotion) {
+            proteinValue.innerText = product.protein;
+        } else {
+            animateNumber(proteinValue, product.protein);
+        }
+        proteinNote.textContent = product.note;
+    }
+
+    pickerBtns.forEach(btn => {
+        btn.addEventListener('click', () => selectProduct(btn.dataset.product));
+    });
 
 });
