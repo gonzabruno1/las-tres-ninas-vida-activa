@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultBox = document.getElementById('calc-result');
     const proteinGrams = document.getElementById('protein-grams');
     const proteinShare = document.getElementById('protein-share');
-    const PROTEIN_PER_SERVING = 11; // g por vaso (200 ml) o por cajita
+    const PROTEIN_PER_SERVING = 11; // g por porción (200 ml)
     let activityMultiplier = 2.0;
 
     activityBtns.forEach(btn => {
@@ -372,16 +372,16 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'assets/pack-chocolate-200.webp',
             alt: 'Vida Activa Batido con Proteína Chocolate 200 ml',
             protein: 11,
-            stat: '<strong>11g</strong> de proteína por cajita',
-            note: '11g por cajita. Mantenimiento muscular y saciedad.',
+            stat: '<strong>11g</strong> de proteína en 200 ml',
+            note: '11g en 200 ml. Mantenimiento muscular y saciedad.',
             small: true
         },
         'latte': {
             img: 'assets/pack-latte-200.webp',
             alt: 'Vida Activa Latte con Proteína sabor Vainilla 200 ml',
             protein: 11,
-            stat: '<strong>11g</strong> de proteína por cajita',
-            note: '11g por cajita. Mantenimiento muscular y saciedad.',
+            stat: '<strong>11g</strong> de proteína en 200 ml',
+            note: '11g en 200 ml. Mantenimiento muscular y saciedad.',
             small: true
         }
     };

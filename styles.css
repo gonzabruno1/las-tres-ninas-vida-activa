@@ -276,67 +276,7 @@ section[id] {
     .hero-scroll-cue { animation: none; }
 }
 
-/* --- MANIFESTO SECTION --- */
-.manifesto-section {
-    padding: var(--spacing-section) 0;
-    background-color: white;
-}
-
-.manifesto-grid {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
-}
-
-.manifesto-block {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
-
-.manifesto-icon-img {
-    height: 150px;
-    width: auto;
-    object-fit: contain;
-    margin-bottom: 30px;
-    transition: transform 0.3s ease;
-}
-
-.manifesto-icon-img:hover {
-    transform: scale(1.1);
-}
-
-/* Ajustes visuales de alineaciÃ³n manual */
-.manifesto-block:nth-child(1) .manifesto-icon-img {
-    margin-top: -20px;
-    /* Subir el primero */
-}
-
-.manifesto-block:nth-child(2) .manifesto-icon-img {
-    margin-top: 20px;
-    /* Bajar el del medio */
-}
-
-.manifesto-block:nth-child(2) .manifesto-text-img {
-    margin-top: -30px;
-    /* Subir el texto visualmente */
-}
-
-.manifesto-text-img {
-    max-width: 100%;
-    max-height: 280px;
-    height: auto;
-    object-fit: contain;
-}
-
-.manifesto-block:nth-child(3) .manifesto-text-img {
-    max-height: 320px;
-    margin-top: -40px;
-}
+/* --- MANIFESTO SECTION: ver bloque MANIFIESTO al final --- */
 
 /* --- BENEFITS SECTION --- */
 .benefits-section {
@@ -1046,29 +986,6 @@ section[id] {
 
     /* Hero: la imagen ya se adapta sola por proporción natural, no necesita override */
 
-    /* Manifesto Section */
-    .manifesto-grid {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .manifesto-block {
-        padding: 0;
-        width: 100%;
-    }
-
-    /* Reset manual adjustments for desktop */
-    .manifesto-block:nth-child(n) .manifesto-icon-img,
-    .manifesto-block:nth-child(n) .manifesto-text-img {
-        margin-top: 0;
-    }
-
-    .manifesto-text-img {
-        max-width: 100%;
-        height: auto;
-        max-height: 160px;
-    }
-
     /* Benefits View: grid 2 columnas — 54g ancha arriba, resto en 2x2 */
     .benefits-layout {
         display: grid;
@@ -1143,34 +1060,6 @@ section[id] {
 
 /* --- RESPONSIVE: Small Mobile (< 480px) --- */
 @media (max-width: 480px) {
-
-    /* MANIFESTO - Íconos más grandes, textos más chicos, compacto */
-    .manifesto-section {
-        padding: 32px 0;
-    }
-
-    .manifesto-block {
-        padding: 8px 20px;
-    }
-
-    .manifesto-icon-img {
-        height: 120px;
-        margin-bottom: 10px;
-    }
-
-    /* Los tres textos al MISMO ancho => misma escala visual de texto */
-    .manifesto-text-img {
-        width: 72%;
-        max-width: 72%;
-        max-height: none;
-        height: auto;
-    }
-
-    /* Anular el agrandado especial de la 3ra en celular */
-    .manifesto-block:nth-child(3) .manifesto-text-img {
-        max-height: none;
-        margin-top: 0;
-    }
 
     /* BENEFICIOS - celulares chicos */
     .benefits-section {
@@ -1796,6 +1685,10 @@ section[id] {
     opacity: 0;
 }
 
+.nutrition[hidden] {
+    display: none;
+}
+
 .nutrition-pending .nutrition-portion {
     font-size: 0.9rem;
     margin-top: 8px;
@@ -1937,5 +1830,113 @@ section[id] {
     .products-section .section-title,
     .moments-section .section-title {
         font-size: 2.2rem;
+    }
+}
+
+/* =====================================================
+   MANIFIESTO — texto real (no imágenes): dos preguntas
+   y la respuesta destacada. Compacto en celular.
+   ===================================================== */
+.manifesto-section {
+    padding: var(--spacing-section) 0;
+    background-color: white;
+}
+
+.manifesto-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    align-items: stretch;
+}
+
+.manifesto-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 28px 24px;
+    border-radius: 20px;
+}
+
+.manifesto-icon-img {
+    height: 110px;
+    width: auto;
+    margin-bottom: 20px;
+}
+
+.manifesto-text {
+    font-family: 'Distro-Bold', sans-serif;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    line-height: 1.25;
+}
+
+.manifesto-text strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 1.25em;
+    line-height: 1.1;
+    margin: 4px 0;
+}
+
+/* La respuesta: tarjeta azul que cierra el manifiesto */
+.manifesto-answer {
+    background: var(--color-primary);
+}
+
+.manifesto-answer .manifesto-text {
+    color: #ffffff;
+}
+
+.manifesto-brand {
+    font-size: 1.5em !important;
+}
+
+@media (max-width: 768px) {
+    .manifesto-section {
+        padding: 36px 0;
+    }
+
+    .manifesto-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    /* Ícono a la izquierda y texto al lado: cada bloque ocupa poco alto */
+    .manifesto-block {
+        flex-direction: row;
+        text-align: left;
+        gap: 16px;
+        padding: 12px 8px;
+    }
+
+    .manifesto-icon-img {
+        flex: 0 0 auto;
+        width: 62px;
+        height: 62px;
+        object-fit: contain;
+        margin: 0;
+    }
+
+    .manifesto-text {
+        font-size: 1.1rem;
+    }
+
+    .manifesto-text strong {
+        display: inline;
+        margin: 0;
+        font-size: 1.15em;
+    }
+
+    .manifesto-answer {
+        margin-top: 8px;
+        padding: 18px 16px;
+    }
+
+    .manifesto-brand {
+        display: block !important;
+        font-size: 1.45em !important;
     }
 }
