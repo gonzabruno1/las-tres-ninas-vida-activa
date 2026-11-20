@@ -15,7 +15,6 @@
 }
 
 /* Apply new font to subtitles */
-.benefit-item p,
 .calculator-module>p,
 .recipe-content p,
 .result-sub {
@@ -278,345 +277,6 @@ section[id] {
 
 /* --- MANIFESTO SECTION: ver bloque MANIFIESTO al final --- */
 
-/* --- BENEFITS SECTION --- */
-.benefits-section {
-    padding: var(--spacing-section) 0;
-    background-color: #f0f4f8;
-}
-
-.benefits-layout {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 60px;
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-.benefits-column {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex: 0 0 220px;
-}
-
-.benefits-left {
-    align-items: flex-end;
-    justify-content: space-between;
-    height: 700px;
-}
-
-.benefits-right {
-    align-items: flex-start;
-    justify-content: space-between;
-    height: 500px;
-}
-
-.benefits-center {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    padding: 0 40px;
-}
-
-.product-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    perspective: 1100px;       /* habilita el tilt y el flip 3D del pack */
-}
-
-/* Contenedor que se da vuelta (frente: pack / dorso: tabla nutricional) */
-.product-flip {
-    position: relative;
-    width: 320px;
-    height: 600px;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    z-index: 2;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.product-flip.flipped {
-    transform: rotateY(180deg);
-}
-
-.product-face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.product-center-img {
-    height: 100%;
-    width: auto;
-    max-width: 100%;
-    filter: drop-shadow(0 20px 40px rgba(0, 35, 102, 0.3));
-    transition: transform 0.2s ease-out;
-    will-change: transform;
-}
-
-/* Indicador "tocá para ver info" */
-.product-flip-hint {
-    position: absolute;
-    bottom: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.92);
-    padding: 5px 14px;
-    border-radius: 999px;
-    box-shadow: 0 2px 10px rgba(0, 35, 102, 0.18);
-    opacity: 0.9;
-    animation: hintPulse 2.2s ease-in-out infinite;
-}
-
-/* Pulso sutil para invitar a tocar/clickear */
-@keyframes hintPulse {
-    0%, 100% { transform: translateX(-50%) scale(1); box-shadow: 0 2px 10px rgba(0, 35, 102, 0.18); }
-    50%      { transform: translateX(-50%) scale(1.06); box-shadow: 0 4px 16px rgba(0, 35, 102, 0.28); }
-}
-
-/* En desktop, al pasar el mouse por el pack, el cartelito se resalta */
-.product-flip:hover .product-flip-hint {
-    opacity: 1;
-    background: var(--color-primary);
-    color: #fff;
-    animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .product-flip-hint { animation: none; }
-}
-
-/* Dorso: tarjeta con la tabla nutricional */
-.product-back {
-    transform: rotateY(180deg);
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 35, 102, 0.18);
-    padding: 18px 16px;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.nutrition {
-    width: 100%;
-    color: var(--color-primary);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-}
-
-.nutrition-title {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    text-transform: uppercase;
-    text-align: center;
-    margin: 0 0 2px;
-}
-
-.nutrition-portion {
-    font-size: 0.72rem;
-    text-align: center;
-    opacity: 0.75;
-    margin: 0 0 8px;
-}
-
-.nutrition-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.68rem;
-    line-height: 1.15;
-}
-
-.nutrition-table th {
-    font-weight: bold;
-    text-align: right;
-    padding: 3px 2px;
-    border-bottom: 2px solid var(--color-primary);
-    font-size: 0.62rem;
-}
-
-.nutrition-table th:first-child {
-    text-align: left;
-}
-
-.nutrition-table td {
-    padding: 3px 2px;
-    border-bottom: 1px solid rgba(0, 35, 102, 0.12);
-    text-align: right;
-}
-
-.nutrition-table td:first-child {
-    text-align: left;
-    font-weight: 600;
-}
-
-.nutrition-table tr.sub td:first-child {
-    padding-left: 10px;
-    font-weight: 400;
-    opacity: 0.8;
-}
-
-.nutrition-foot {
-    font-size: 0.58rem;
-    opacity: 0.7;
-    margin: 8px 0 0;
-    line-height: 1.2;
-}
-
-/* Flechas SVG */
-.arrow {
-    position: absolute;
-    width: 120px;
-    height: 80px;
-    z-index: 1;
-}
-
-.arrow-left-top {
-    left: -130px;
-    top: 80px;
-}
-
-.arrow-left-middle {
-    left: -130px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 30px;
-}
-
-.arrow-left-bottom {
-    left: -130px;
-    bottom: 80px;
-}
-
-.arrow-right-top {
-    right: -130px;
-    top: 33%;
-    transform: translateY(-50%);
-}
-
-.arrow-right-bottom {
-    right: -130px;
-    top: 66%;
-    transform: translateY(-50%);
-}
-
-
-/* === FLIP CARD: frente (ícono + título) / dorso (descripción) === */
-.benefit-item {
-    width: 200px;
-    height: 200px;
-    perspective: 1000px;
-    cursor: pointer;
-    background: transparent;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.benefit-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-}
-
-.benefit-item.flipped .benefit-inner {
-    transform: rotateY(180deg);
-}
-
-.benefit-face {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0 4px 14px rgba(0, 35, 102, 0.08);
-    overflow: hidden;
-}
-
-.benefit-front {
-    background: white;
-}
-
-.benefit-back {
-    background: var(--color-primary);
-    color: #ffffff;
-    transform: rotateY(180deg);
-}
-
-/* Realce en hover sin transform en el contenedor (no rompe el 3D) */
-.benefit-item:hover .benefit-face {
-    box-shadow: 0 10px 28px rgba(0, 35, 102, 0.18);
-}
-
-/* Indicador "girá la tarjeta" */
-.flip-hint {
-    position: absolute;
-    bottom: 9px;
-    right: 12px;
-    font-size: 1.05rem;
-    line-height: 1;
-    color: var(--color-primary);
-    opacity: 0.35;
-    transition: opacity 0.3s ease, transform 0.5s ease;
-}
-
-.benefit-item:hover .flip-hint {
-    opacity: 0.7;
-    transform: rotate(90deg);
-}
-
-.benefit-icon {
-    margin-bottom: 10px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.benefit-icon-img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-.benefit-item h3 {
-    font-family: var(--font-heading);
-    color: var(--color-primary);
-    margin-bottom: 0;
-    font-size: 1.1rem;
-}
-
-.benefit-item p {
-    font-size: 0.95rem;
-    line-height: 1.4;
-    margin: 0;
-}
-
-/* La gota (0% grasas) ya está bien proporcionada, no necesita escalado extra */
-
 /* --- INTERACTIVE SECTION --- */
 .interactive-section {
     padding: var(--spacing-section) 0;
@@ -702,9 +362,12 @@ section[id] {
     transition: opacity 0.5s ease;
 }
 
+.result-box {
+    animation: fadeIn 0.4s ease;
+}
+
 .result-box.hidden {
-    opacity: 0;
-    pointer-events: none;
+    display: none;
 }
 
 .result-text {
@@ -986,98 +649,11 @@ section[id] {
 
     /* Hero: la imagen ya se adapta sola por proporción natural, no necesita override */
 
-    /* Benefits View: grid 2 columnas — 54g ancha arriba, resto en 2x2 */
-    .benefits-layout {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        align-items: stretch;
-    }
-
-    /* Las columnas "desaparecen": sus tarjetas pasan a ser items del grid */
-    .benefits-left,
-    .benefits-right {
-        display: contents;
-    }
-
-    /* El pack: todo el ancho, arriba de todo */
-    .benefits-center {
-        grid-column: 1 / -1;
-        order: -1;
-        margin-bottom: 8px;
-        padding: 0;
-    }
-
-    /* Flip del pack más chico en celular; el dorso (tabla) usa el ancho */
-    .product-flip {
-        width: min(340px, 90vw);
-        height: 360px;
-    }
-
-    .arrow {
-        display: none;
-    }
-
-    /* Las 4 tarjetas de la 2x2: cuadradas, más chicas */
-    .benefit-item {
-        width: auto;
-        max-width: none;
-        height: 150px;
-        padding: 0;
-        margin: 0;
-    }
-
-    /* Tarjeta 54g: ancha (todo el ancho) y más bajita, ícono+título horizontal */
-    .benefits-left .benefit-item:nth-child(1) {
-        grid-column: 1 / -1;
-        height: 110px;
-    }
-
-    .benefits-left .benefit-item:nth-child(1) .benefit-front {
-        flex-direction: row;
-        gap: 18px;
-    }
-
-    .benefits-left .benefit-item:nth-child(1) .benefit-icon {
-        margin-bottom: 0;
-    }
-
-    /* Títulos: chicos en las 2x2, más grande en la featured 54g */
-    .benefit-item h3 {
-        font-size: 1rem;
-    }
-
-    .benefits-left .benefit-item:nth-child(1) h3 {
-        font-size: 1.35rem;
-    }
-
-    /* Íconos un poco más chicos en las 2x2 para dar aire */
-    .benefit-icon {
-        height: 48px;
-    }
 
 }
 
 /* --- RESPONSIVE: Small Mobile (< 480px) --- */
 @media (max-width: 480px) {
-
-    /* BENEFICIOS - celulares chicos */
-    .benefits-section {
-        padding: 40px 0;
-    }
-
-    .product-flip {
-        height: 350px;
-    }
-
-    /* Las 4 tarjetas 2x2: alto un poco menor en pantallas chicas */
-    .benefit-item {
-        height: 140px;
-    }
-
-    .benefits-left .benefit-item:nth-child(1) {
-        height: 105px;
-    }
 
     /* Section spacing */
     :root {
@@ -1129,15 +705,6 @@ section[id] {
     50%       { transform: translateY(-14px); }
 }
 
-.product-wrapper {
-    animation: float 4.5s ease-in-out infinite;
-}
-
-/* Override: hover escala sobre el flotante */
-.product-center-img:hover {
-    transform: scale(1.05);
-    transition: transform 0.4s ease;
-}
 
 /* --- Scroll animations: base --- */
 .fade-in-up {
@@ -1181,40 +748,6 @@ section[id] {
 .view-recipe-btn:hover {
     animation: pulseBorder 1.2s ease-in-out infinite;
 }
-
-/* --- Benefit: aparición al entrar al viewport (opacity only para no
-   romper el contexto 3D del flip) --- */
-.benefit-item {
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.benefit-item.is-visible {
-    opacity: 1;
-}
-
-/* --- Contador animado del número 54g --- */
-@keyframes countUp {
-    from { transform: translateY(8px); opacity: 0; }
-    to   { transform: translateY(0);   opacity: 1; }
-}
-
-.benefit-item.is-visible h3 {
-    animation: countUp 0.4s ease 0.1s both;
-}
-
-/* --- Manifesto: slide lateral alternado --- */
-.manifesto-block:nth-child(odd)  { opacity: 0; transform: translateX(-30px); transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-.manifesto-block:nth-child(even) { opacity: 0; transform: translateX(30px);  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-
-.manifesto-block.is-visible {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.manifesto-block:nth-child(1) { transition-delay: 0.0s; }
-.manifesto-block:nth-child(2) { transition-delay: 0.18s; }
-.manifesto-block:nth-child(3) { transition-delay: 0.36s; }
 
 /* --- Footer CTA --- */
 .footer-cta {
@@ -1265,12 +798,6 @@ section[id] {
    MOBILE: mejoras específicas para experiencia QR
    ===================================================== */
 @media (max-width: 768px) {
-    /* Manifesto: en mobile no hay espacio para slide lateral, hacemos fade-up */
-    .manifesto-block:nth-child(odd),
-    .manifesto-block:nth-child(even) {
-        transform: translateY(28px);
-    }
-
     /* Recipe cards en mobile: stagger menor */
     .recipe-card:nth-child(2) { transition-delay: 0.08s; }
     .recipe-card:nth-child(3) { transition-delay: 0.16s; }
@@ -1671,20 +1198,6 @@ section[id] {
     color: #ffffff;
 }
 
-/* Los packs de 200 ml son más bajitos que los de 1L */
-.product-flip.is-small .product-center-img {
-    height: 78%;
-}
-
-/* Cambio de producto: el pack se desvanece y vuelve */
-.product-front {
-    transition: opacity 0.25s ease;
-}
-
-.product-flip.is-swapping .product-front {
-    opacity: 0;
-}
-
 .nutrition[hidden] {
     display: none;
 }
@@ -1833,110 +1346,446 @@ section[id] {
     }
 }
 
+
 /* =====================================================
-   MANIFIESTO — texto real (no imágenes): dos preguntas
-   y la respuesta destacada. Compacto en celular.
+   BENEFICIOS — pack + gramos de proteína protagonistas,
+   claims en lista compacta, tabla nutricional desplegable
    ===================================================== */
-.manifesto-section {
+.benefits-section {
     padding: var(--spacing-section) 0;
-    background-color: white;
+    background-color: #f0f4f8;
 }
 
-.manifesto-grid {
+.benefits-panel {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    align-items: stretch;
-}
-
-.manifesto-block {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: auto minmax(0, 420px);
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 28px 24px;
-    border-radius: 20px;
+    gap: 64px;
 }
 
-.manifesto-icon-img {
-    height: 110px;
+.benefits-pack {
+    height: 460px;
+    width: 230px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    perspective: 900px;
+    transition: opacity 0.18s ease;
+}
+
+.benefits-pack .product-center-img {
+    height: 100%;
     width: auto;
-    margin-bottom: 20px;
+    max-width: none;
+    filter: drop-shadow(0 18px 30px rgba(0, 35, 102, 0.28));
+    transition: transform 0.2s ease-out;
 }
 
-.manifesto-text {
-    font-family: 'Distro-Bold', sans-serif;
+/* Los packs de 200 ml son más bajitos que los de 1L */
+.benefits-pack.is-small .product-center-img {
+    height: 74%;
+}
+
+.benefits-pack.is-swapping,
+.protein-hero.is-swapping {
+    opacity: 0;
+}
+
+.protein-hero {
     color: var(--color-primary);
-    font-size: 1.6rem;
-    line-height: 1.25;
+    transition: opacity 0.18s ease;
 }
 
-.manifesto-text strong {
-    display: block;
+.protein-figure {
     font-family: var(--font-heading);
-    font-weight: normal;
+    line-height: 0.85;
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+}
+
+.protein-num {
+    font-size: 7rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.protein-unit {
+    font-size: 3.6rem;
+    margin-left: 2px;
+}
+
+.protein-label {
+    font-family: var(--font-heading);
     text-transform: uppercase;
-    font-size: 1.25em;
+    font-size: 1.35rem;
     line-height: 1.1;
-    margin: 4px 0;
+    margin: 8px 0 0;
 }
 
-/* La respuesta: tarjeta azul que cierra el manifiesto */
-.manifesto-answer {
+.protein-note {
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    opacity: 0.75;
+    margin: 6px 0 0;
+}
+
+.protein-note[hidden] {
+    display: none;
+}
+
+.claims-list {
+    list-style: none;
+    margin: 26px 0 0;
+    padding: 18px 0 0;
+    border-top: 2px solid rgba(0, 35, 102, 0.12);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 16px;
+}
+
+.claim {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.95rem;
+    line-height: 1.1;
+    color: var(--color-primary);
+}
+
+.claim-icon {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
     background: var(--color-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: -0.5px;
 }
 
-.manifesto-answer .manifesto-text {
+.nutrition-toggle {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Distro-Bold', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    background: #ffffff;
+    border: 2px solid var(--color-primary);
+    border-radius: 999px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.nutrition-toggle:hover,
+.nutrition-toggle.is-open {
+    background: var(--color-primary);
     color: #ffffff;
 }
 
-.manifesto-brand {
-    font-size: 1.5em !important;
+.nutrition-toggle-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+    transition: transform 0.25s ease;
 }
 
+.nutrition-toggle.is-open .nutrition-toggle-icon {
+    transform: rotate(45deg);
+}
+
+.nutrition-panel {
+    max-width: 520px;
+    margin: 28px auto 0;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 35, 102, 0.12);
+    padding: 18px 18px 14px;
+    animation: fadeIn 0.35s ease;
+}
+
+.nutrition-panel[hidden] {
+    display: none;
+}
+
+.nutrition {
+    width: 100%;
+    color: var(--color-primary);
+}
+
+.nutrition-title {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0 0 2px;
+}
+
+.nutrition-portion {
+    font-size: 0.72rem;
+    text-align: center;
+    opacity: 0.75;
+    margin: 0 0 8px;
+}
+
+.nutrition-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.68rem;
+    line-height: 1.15;
+}
+
+.nutrition-table th {
+    font-weight: bold;
+    text-align: right;
+    padding: 3px 2px;
+    border-bottom: 2px solid var(--color-primary);
+    font-size: 0.62rem;
+}
+
+.nutrition-table th:first-child {
+    text-align: left;
+}
+
+.nutrition-table td {
+    padding: 3px 2px;
+    border-bottom: 1px solid rgba(0, 35, 102, 0.12);
+    text-align: right;
+}
+
+.nutrition-table td:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+
+.nutrition-table tr.sub td:first-child {
+    padding-left: 10px;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.nutrition-foot {
+    font-size: 0.58rem;
+    opacity: 0.7;
+    margin: 8px 0 0;
+    line-height: 1.2;
+}
+
+
+
+/* =====================================================
+   CELULAR — todo más compacto para scrollear menos
+   ===================================================== */
 @media (max-width: 768px) {
-    .manifesto-section {
-        padding: 36px 0;
+    :root {
+        --spacing-section: 48px;
     }
 
-    .manifesto-grid {
-        grid-template-columns: 1fr;
+    .section-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 24px;
+    }
+
+    .products-section .section-title,
+    .moments-section .section-title {
+        font-size: 2rem;
+    }
+
+    /* Beneficios: pack a la izquierda, gramos a la derecha; claims abajo */
+    .benefits-section {
+        padding: 32px 0 36px;
+    }
+
+    .benefits-panel {
+        grid-template-columns: 112px 1fr;
+        gap: 4px 18px;
+        align-items: end;
+    }
+
+    .benefits-pack {
+        height: 230px;
+        width: 112px;
+    }
+
+    .protein-hero {
+        padding-bottom: 6px;
+    }
+
+    .protein-num {
+        font-size: 5.2rem;
+    }
+
+    .protein-unit {
+        font-size: 2.6rem;
+    }
+
+    .protein-label {
+        font-size: 1.15rem;
+    }
+
+    .protein-note {
+        font-size: 0.85rem;
+    }
+
+    .benefits-info {
+        display: contents;
+    }
+
+    .claims-list,
+    .nutrition-toggle {
+        grid-column: 1 / -1;
+    }
+
+    .claims-list {
+        margin-top: 14px;
+        padding-top: 14px;
+        gap: 10px 12px;
+    }
+
+    .claim {
+        font-size: 0.8rem;
+        gap: 8px;
+    }
+
+    .claim-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.72rem;
+    }
+
+    .nutrition-toggle {
+        justify-self: center;
+        margin-top: 16px;
+        font-size: 0.85rem;
+    }
+
+    .nutrition-panel {
+        margin-top: 16px;
+        padding: 14px 12px 10px;
+    }
+
+    /* Momentos: tarjetas más bajas */
+    .moments-list {
         gap: 10px;
     }
 
-    /* Ícono a la izquierda y texto al lado: cada bloque ocupa poco alto */
-    .manifesto-block {
-        flex-direction: row;
-        text-align: left;
-        gap: 16px;
-        padding: 12px 8px;
+    .moment {
+        gap: 14px;
+        padding: 12px 14px;
+        border-radius: 16px;
     }
 
-    .manifesto-icon-img {
-        flex: 0 0 auto;
-        width: 62px;
-        height: 62px;
-        object-fit: contain;
-        margin: 0;
+    .moment-pack,
+    .moment-pack.is-small {
+        width: 44px;
     }
 
-    .manifesto-text {
-        font-size: 1.1rem;
+    .moment-pack.is-small {
+        width: 38px;
     }
 
-    .manifesto-text strong {
-        display: inline;
-        margin: 0;
-        font-size: 1.15em;
+    .moment-time {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+        margin-bottom: 6px;
     }
 
-    .manifesto-answer {
-        margin-top: 8px;
-        padding: 18px 16px;
+    .moment h3 {
+        font-size: 1.05rem;
+        margin-bottom: 3px;
     }
 
-    .manifesto-brand {
-        display: block !important;
-        font-size: 1.45em !important;
+    .moment p {
+        font-size: 0.8rem;
     }
+
+    /* Calculadora: sin hueco vacío antes del resultado */
+    .calculator-module {
+        padding: 24px 20px;
+    }
+
+    .interactive-section h2 {
+        font-size: 1.6rem;
+        line-height: 1.15;
+    }
+
+    .interactive-section p {
+        margin-bottom: 18px;
+    }
+
+    .input-group {
+        margin-bottom: 14px;
+    }
+
+    .result-box {
+        margin-top: 18px;
+        padding: 16px;
+    }
+
+    /* Recetas: carrusel horizontal en vez de una debajo de la otra */
+    .recipes-grid {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        margin: 0 -20px;
+        padding: 4px 20px 16px;
+        align-items: flex-start;
+    }
+
+    .recipes-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .recipe-card {
+        flex: 0 0 82%;
+        scroll-snap-align: center;
+        height: auto;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .recipe-image {
+        height: 170px;
+    }
+
+    .recipe-content {
+        padding: 16px 18px 18px;
+    }
+
+    .recipe-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 6px;
+    }
+
+    .recipe-intro {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+
+    .recipe-meta {
+        margin-bottom: 14px;
+        font-size: 0.8rem;
+    }
+
+    .view-recipe-btn {
+        font-size: 0.85rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Momentos y calculadora comparten el azul: sin doble espacio entre ambas */
+.moments-section + .interactive-section {
+    padding-top: 0;
 }

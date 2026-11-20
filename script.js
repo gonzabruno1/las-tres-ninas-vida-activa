@@ -60,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
     const animatedSelectors = [
-        '.manifesto-block',
-        '.benefit-item',
         '.calculator-module',
         '.fade-in-up',
         '.recipe-card',
@@ -220,22 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =====================================================
-       FLIP CARDS de beneficios — tocá/click para dar vuelta
-       (un tap no interrumpe el scroll: el scroll es un arrastre)
-       ===================================================== */
-    document.querySelectorAll('.benefit-item, .product-flip').forEach(card => {
-        const toggle = () => card.classList.toggle('flipped');
-        card.addEventListener('click', toggle);
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggle();
-            }
-        });
-    });
-
-
-    /* =====================================================
        PACK 3D — tilt con giroscopio (mobile) y mouse (desktop)
        ===================================================== */
     const pack = document.querySelector('.product-center-img');
@@ -357,7 +339,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alt: 'Vida Activa Leche con Proteína 1L',
             protein: 54,
             stat: '<strong>54g</strong> de proteína por litro',
-            note: '54g por litro. Mantenimiento muscular y saciedad.',
+            per: 'por litro',
+            portion: '11g por porción de 200 ml',
             small: false
         },
         'chocolate-1l': {
@@ -365,7 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alt: 'Vida Activa Batido con Proteína Chocolate 1L',
             protein: 54,
             stat: '<strong>54g</strong> de proteína por litro',
-            note: '54g por litro, 11g por porción. Mantenimiento muscular y saciedad.',
+            per: 'por litro',
+            portion: '11g por porción de 200 ml',
             small: false
         },
         'chocolate-200': {
@@ -373,7 +357,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alt: 'Vida Activa Batido con Proteína Chocolate 200 ml',
             protein: 11,
             stat: '<strong>11g</strong> de proteína en 200 ml',
-            note: '11g en 200 ml. Mantenimiento muscular y saciedad.',
+            per: 'en 200\u00a0ml',
+            portion: '',
             small: true
         },
         'latte': {
@@ -381,7 +366,8 @@ document.addEventListener('DOMContentLoaded', () => {
             alt: 'Vida Activa Latte con Proteína sabor Vainilla 200 ml',
             protein: 11,
             stat: '<strong>11g</strong> de proteína en 200 ml',
-            note: '11g en 200 ml. Mantenimiento muscular y saciedad.',
+            per: 'en 200\u00a0ml',
+            portion: '',
             small: true
         }
     };
@@ -466,10 +452,14 @@ document.addEventListener('DOMContentLoaded', () => {
        los gramos de proteína y la tabla nutricional)
        ===================================================== */
     const pickerBtns = document.querySelectorAll('.picker-btn');
-    const productFlip = document.getElementById('product-flip');
+    const packWrap = document.getElementById('benefits-pack-wrap');
     const benefitsPack = document.getElementById('benefits-pack');
+    const proteinHero = document.getElementById('protein-hero');
     const proteinValue = document.getElementById('benefit-protein');
+    const proteinPer = document.getElementById('benefit-protein-per');
     const proteinNote = document.getElementById('benefit-protein-note');
+    const nutritionPanel = document.getElementById('nutrition-panel');
+    const nutritionToggle = document.getElementById('nutrition-toggle');
 
     function selectProduct(key) {
         const product = PRODUCTS[key];
@@ -486,18 +476,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Pack: se desvanece, cambia y vuelve (y se muestra de frente)
-        productFlip.classList.remove('flipped');
-        productFlip.classList.add('is-swapping');
-        setTimeout(() => {
+        // Pack y gramos: fundido corto, cambian, y vuelven (sin contador)
+        const swap = () => {
             benefitsPack.src = product.img;
             benefitsPack.alt = product.alt;
-            productFlip.classList.toggle('is-small', product.small);
-            productFlip.classList.remove('is-swapping');
-        }, 250);
+            packWrap.classList.toggle('is-small', product.small);
+            proteinValue.textContent = product.protein;
+            proteinPer.textContent = product.per;
+            proteinNote.textContent = product.portion;
+            proteinNote.hidden = !product.portion;
+        };
+        if (prefersReducedMotion) {
+            swap();
+        } else {
+            packWrap.classList.add('is-swapping');
+            proteinHero.classList.add('is-swapping');
+            setTimeout(() => {
+                swap();
+                packWrap.classList.remove('is-swapping');
+                proteinHero.classList.remove('is-swapping');
+            }, 180);
+        }
 
         // Tabla nutricional del producto, o aviso si todavía no está cargada
-        const tables = productFlip.querySelectorAll('.nutrition[data-nutrition]');
+        const tables = nutritionPanel.querySelectorAll('.nutrition[data-nutrition]');
         let found = false;
         tables.forEach(t => {
             // una tabla puede valer para varios productos (ej. Batido 1L y 200 ml)
@@ -505,17 +507,16 @@ document.addEventListener('DOMContentLoaded', () => {
             t.hidden = !match;
             if (match) found = true;
         });
-        productFlip.querySelector('.nutrition-pending').hidden = found;
-
-        // Gramos de proteína
-        proteinValue.dataset.odometer = product.protein;
-        if (prefersReducedMotion) {
-            proteinValue.innerText = product.protein;
-        } else {
-            animateNumber(proteinValue, product.protein);
-        }
-        proteinNote.textContent = product.note;
+        nutritionPanel.querySelector('.nutrition-pending').hidden = found;
     }
+
+    // Desplegable de información nutricional
+    nutritionToggle.addEventListener('click', () => {
+        const open = nutritionPanel.hidden;
+        nutritionPanel.hidden = !open;
+        nutritionToggle.setAttribute('aria-expanded', open);
+        nutritionToggle.classList.toggle('is-open', open);
+    });
 
     pickerBtns.forEach(btn => {
         btn.addEventListener('click', () => selectProduct(btn.dataset.product));

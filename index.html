@@ -173,227 +173,126 @@
                 <button type="button" class="picker-btn" role="tab" aria-selected="false" data-product="latte">Latte 200ml</button>
             </div>
 
-            <div class="benefits-layout">
-                <!-- Beneficios Izquierda -->
-                <div class="benefits-column benefits-left">
-                    <div class="benefit-item" data-position="left-top" tabindex="0" role="button" aria-label="Proteína. Tocá para ver más.">
-                        <div class="benefit-inner">
-                            <div class="benefit-face benefit-front">
-                                <div class="benefit-icon"><img src="assets/icon-muscle.webp?v=2" alt="Proteína"
-                                        class="benefit-icon-img" loading="lazy"></div>
-                                <h3><span class="odometer" id="benefit-protein" data-odometer="54">54</span>g Proteína</h3>
-                                <span class="flip-hint" aria-hidden="true">↻</span>
-                            </div>
-                            <div class="benefit-face benefit-back">
-                                <p id="benefit-protein-note">54g por litro. Mantenimiento muscular y saciedad.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="benefit-item" data-position="left-middle" tabindex="0" role="button" aria-label="0% Lactosa. Tocá para ver más.">
-                        <div class="benefit-inner">
-                            <div class="benefit-face benefit-front">
-                                <div class="benefit-icon"><img src="assets/icon-lactosa.webp?v=2" alt="Sin Lactosa"
-                                        class="benefit-icon-img" loading="lazy"></div>
-                                <h3>0% Lactosa</h3>
-                                <span class="flip-hint" aria-hidden="true">↻</span>
-                            </div>
-                            <div class="benefit-face benefit-back">
-                                <p>Fácil digestión.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="benefit-item" data-position="left-bottom" tabindex="0" role="button" aria-label="0% Grasas. Tocá para ver más.">
-                        <div class="benefit-inner">
-                            <div class="benefit-face benefit-front">
-                                <div class="benefit-icon"><img src="assets/icon-grasas.webp?v=2" alt="Sin Grasas"
-                                        class="benefit-icon-img" loading="lazy"></div>
-                                <h3>0% Grasas</h3>
-                                <span class="flip-hint" aria-hidden="true">↻</span>
-                            </div>
-                            <div class="benefit-face benefit-back">
-                                <p>Ligero para tu cuerpo.</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="benefits-panel">
+                <!-- Pack del producto elegido -->
+                <div class="benefits-pack" id="benefits-pack-wrap">
+                    <img src="assets/pack-leche-1l.webp" alt="Vida Activa Leche con Proteína 1L"
+                        class="product-center-img" id="benefits-pack" loading="lazy">
                 </div>
 
-                <!-- Producto Central con Flechas -->
-                <div class="benefits-center" data-parallax="0.12">
-                    <div class="product-wrapper">
-                        <!-- Flechas izquierda -->
-                        <svg class="arrow arrow-left-top" viewBox="0 0 100 50" preserveAspectRatio="none">
-                            <path d="M100,25 Q50,25 10,10" stroke="#002366" stroke-width="2" fill="none"
-                                marker-end="url(#arrowhead)" />
-                        </svg>
-                        <svg class="arrow arrow-left-middle" viewBox="0 0 100 20" preserveAspectRatio="none">
-                            <path d="M100,10 L10,10" stroke="#002366" stroke-width="2" fill="none"
-                                marker-end="url(#arrowhead)" />
-                        </svg>
-                        <svg class="arrow arrow-left-bottom" viewBox="0 0 100 50" preserveAspectRatio="none">
-                            <path d="M100,25 Q50,25 10,40" stroke="#002366" stroke-width="2" fill="none"
-                                marker-end="url(#arrowhead)" />
-                        </svg>
-
-                        <!-- Flechas derecha -->
-                        <svg class="arrow arrow-right-top" viewBox="0 0 100 50" preserveAspectRatio="none">
-                            <path d="M0,25 Q50,25 90,10" stroke="#002366" stroke-width="2" fill="none"
-                                marker-end="url(#arrowhead)" />
-                        </svg>
-                        <svg class="arrow arrow-right-bottom" viewBox="0 0 100 50" preserveAspectRatio="none">
-                            <path d="M0,25 Q50,25 90,40" stroke="#002366" stroke-width="2" fill="none"
-                                marker-end="url(#arrowhead)" />
-                        </svg>
-
-                        <!-- Definición de flechas -->
-                        <svg style="position: absolute; width: 0; height: 0;">
-                            <defs>
-                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
-                                    orient="auto">
-                                    <polygon points="0 0, 10 3.5, 0 7" fill="#002366" />
-                                </marker>
-                                <marker id="arrowhead-right" markerWidth="10" markerHeight="7" refX="1" refY="3.5"
-                                    orient="auto">
-                                    <polygon points="10 0, 0 3.5, 10 7" fill="#002366" />
-                                </marker>
-                            </defs>
-                        </svg>
-
-                        <!-- Pack que se da vuelta y muestra la tabla nutricional -->
-                        <div class="product-flip" id="product-flip" role="button" tabindex="0"
-                            aria-label="Pack Vida Activa. Tocá para ver la información nutricional.">
-                            <div class="product-face product-front">
-                                <img src="assets/pack-leche-1l.webp" alt="Vida Activa Leche con Proteína 1L"
-                                    class="product-center-img" id="benefits-pack" loading="lazy">
-                                <span class="product-flip-hint" aria-hidden="true">↻ Info nutricional</span>
-                            </div>
-                            <div class="product-face product-back">
-                                <!-- Una tabla por producto (data-nutrition). Si un producto
-                                     todavía no tiene tabla, se muestra el aviso de abajo. -->
-                                <div class="nutrition" data-nutrition="leche">
-                                    <h4 class="nutrition-title">Información Nutricional</h4>
-                                    <p class="nutrition-portion">Porción 200 ml (1 vaso)</p>
-                                    <table class="nutrition-table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>100 ml</th>
-                                                <th>Porción</th>
-                                                <th>%VD*</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td>Valor energético</td><td>41 kcal</td><td>82 kcal</td><td>4</td></tr>
-                                            <tr><td>Carbohidratos</td><td>4,8 g</td><td>9,6 g</td><td>3</td></tr>
-                                            <tr class="sub"><td>Azúcares totales</td><td>4,8 g</td><td>9,6 g</td><td>—</td></tr>
-                                            <tr class="sub"><td>Azúcares añadidos</td><td>0,0 g</td><td>0,0 g</td><td>—</td></tr>
-                                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
-                                            <tr><td>Grasas totales</td><td>0,0 g</td><td>0,0 g</td><td>0</td></tr>
-                                            <tr class="sub"><td>Grasas saturadas</td><td>0,0 g</td><td>0,0 g</td><td>0</td></tr>
-                                            <tr class="sub"><td>Grasas trans</td><td>0 g</td><td>0 g</td><td>—</td></tr>
-                                            <tr><td>Fibra alimentaria</td><td>0 g</td><td>0 g</td><td>0</td></tr>
-                                            <tr><td>Sodio</td><td>45 mg</td><td>90 mg</td><td>4</td></tr>
-                                            <tr><td>Calcio</td><td>150 mg</td><td>300 mg</td><td>30</td></tr>
-                                            <tr><td>Vitamina A</td><td>80 µg</td><td>160 µg</td><td>27</td></tr>
-                                            <tr><td>Vitamina D</td><td>1,0 µg</td><td>2,0 µg</td><td>40</td></tr>
-                                        </tbody>
-                                    </table>
-                                    <p class="nutrition-foot">*% Valores Diarios con base a una dieta de 2000 kcal.</p>
-                                </div>
-                                <div class="nutrition" data-nutrition="chocolate-1l chocolate-200" hidden>
-                                    <h4 class="nutrition-title">Información Nutricional</h4>
-                                    <p class="nutrition-portion">Porción 200 ml</p>
-                                    <table class="nutrition-table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>100 ml</th>
-                                                <th>Porción</th>
-                                                <th>%VD*</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td>Valor energético</td><td>48 kcal</td><td>97 kcal</td><td>5</td></tr>
-                                            <tr><td>Carbohidratos</td><td>6,2 g</td><td>12 g</td><td>4</td></tr>
-                                            <tr class="sub"><td>Azúcares totales</td><td>6,2 g</td><td>12 g</td><td>—</td></tr>
-                                            <tr class="sub"><td>Azúcares añadidos</td><td>0,0 g</td><td>0,0 g</td><td>—</td></tr>
-                                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
-                                            <tr><td>Grasas totales</td><td>0,2 g</td><td>0,4 g</td><td>0</td></tr>
-                                            <tr class="sub"><td>Grasas saturadas</td><td>0,1 g</td><td>0,2 g</td><td>0</td></tr>
-                                            <tr class="sub"><td>Grasas trans</td><td>0 g</td><td>0 g</td><td>—</td></tr>
-                                            <tr><td>Fibra alimentaria</td><td>0 g</td><td>0 g</td><td>0</td></tr>
-                                            <tr><td>Sodio</td><td>55 mg</td><td>101 mg</td><td>4</td></tr>
-                                            <tr><td>Calcio</td><td>113 mg</td><td>226 mg</td><td>22</td></tr>
-                                            <tr><td>Vitamina A</td><td>75 µg</td><td>150 µg</td><td>25</td></tr>
-                                            <tr><td>Vitamina D</td><td>0,75 µg</td><td>1,5 µg</td><td>30</td></tr>
-                                        </tbody>
-                                    </table>
-                                    <p class="nutrition-foot">*% Valores Diarios con base a una dieta de 2000 kcal.</p>
-                                </div>
-                                <div class="nutrition" data-nutrition="latte" hidden>
-                                    <h4 class="nutrition-title">Información Nutricional</h4>
-                                    <p class="nutrition-portion">Porción 200 ml (1 envase)</p>
-                                    <table class="nutrition-table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>100 ml</th>
-                                                <th>Porción</th>
-                                                <th>%VD*</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td>Valor energético</td><td>45 kcal</td><td>90 kcal</td><td>5</td></tr>
-                                            <tr><td>Carbohidratos</td><td>6,1 g</td><td>12 g</td><td>4</td></tr>
-                                            <tr class="sub"><td>Azúcares totales</td><td>5,8 g</td><td>12 g</td><td>—</td></tr>
-                                            <tr class="sub"><td>Azúcares añadidos</td><td>0 g</td><td>0 g</td><td>—</td></tr>
-                                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
-                                            <tr><td>Sodio</td><td>51 mg</td><td>102 mg</td><td>4</td></tr>
-                                            <tr><td>Calcio</td><td>113 mg</td><td>226 mg</td><td>22</td></tr>
-                                            <tr><td>Vitamina A</td><td>78 µg</td><td>156 µg</td><td>25</td></tr>
-                                            <tr><td>Vitamina D</td><td>0,8 µg</td><td>1,6 µg</td><td>30</td></tr>
-                                        </tbody>
-                                    </table>
-                                    <p class="nutrition-foot">No aporta cantidades significativas de grasas totales, grasas
-                                        saturadas, grasas trans y fibra alimentaria. *% Valores Diarios con base a una
-                                        dieta de 2000 kcal.</p>
-                                </div>
-                                <div class="nutrition nutrition-pending" hidden>
-                                    <h4 class="nutrition-title">Información Nutricional</h4>
-                                    <p class="nutrition-portion">Consultá la tabla nutricional completa en el envase.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div class="benefits-info">
+                    <!-- Protagonista: los gramos de proteína -->
+                    <div class="protein-hero" id="protein-hero">
+                        <p class="protein-figure"><span class="protein-num" id="benefit-protein">54</span><span class="protein-unit">g</span></p>
+                        <p class="protein-label">de proteína <span id="benefit-protein-per">por litro</span></p>
+                        <p class="protein-note" id="benefit-protein-note">11g por porción de 200 ml</p>
                     </div>
+
+                    <ul class="claims-list">
+                        <li class="claim"><span class="claim-icon" aria-hidden="true">0%</span>Lactosa</li>
+                        <li class="claim"><span class="claim-icon" aria-hidden="true">0%</span>Azúcares añadidos</li>
+                        <li class="claim"><span class="claim-icon" aria-hidden="true">0%</span>Grasas</li>
+                        <li class="claim"><span class="claim-icon" aria-hidden="true">9</span>Aminoácidos esenciales</li>
+                    </ul>
+
+                    <button type="button" class="nutrition-toggle" id="nutrition-toggle" aria-expanded="false"
+                        aria-controls="nutrition-panel">Información nutricional <span class="nutrition-toggle-icon" aria-hidden="true">+</span></button>
                 </div>
+            </div>
 
-                <!-- Beneficios Derecha -->
-                <div class="benefits-column benefits-right">
-                    <div class="benefit-item" data-position="right-top" tabindex="0" role="button" aria-label="0% Azúcares añadidos. Tocá para ver más.">
-                        <div class="benefit-inner">
-                            <div class="benefit-face benefit-front">
-                                <div class="benefit-icon"><img src="assets/icon-azucares.webp?v=2" alt="Sin Azúcares añadidos"
-                                        class="benefit-icon-img" loading="lazy"></div>
-                                <h3>0% Azúcares añadidos</h3>
-                                <span class="flip-hint" aria-hidden="true">↻</span>
-                            </div>
-                            <div class="benefit-face benefit-back">
-                                <p>Sin azúcares agregados.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="benefit-item" data-position="right-bottom" tabindex="0" role="button" aria-label="9 Aminoácidos. Tocá para ver más.">
-                        <div class="benefit-inner">
-                            <div class="benefit-face benefit-front">
-                                <div class="benefit-icon"><img src="assets/icon-dna.webp?v=2" alt="Aminoácidos"
-                                        class="benefit-icon-img" loading="lazy"></div>
-                                <h3>9 Aminoácidos</h3>
-                                <span class="flip-hint" aria-hidden="true">↻</span>
-                            </div>
-                            <div class="benefit-face benefit-back">
-                                <p>Nutrición completa garantizada.</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Tabla nutricional desplegable (una por producto, data-nutrition) -->
+            <div class="nutrition-panel" id="nutrition-panel" hidden>
+                <div class="nutrition" data-nutrition="leche">
+                    <h4 class="nutrition-title">Información Nutricional</h4>
+                    <p class="nutrition-portion">Porción 200 ml (1 vaso)</p>
+                    <table class="nutrition-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>100 ml</th>
+                                <th>Porción</th>
+                                <th>%VD*</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Valor energético</td><td>41 kcal</td><td>82 kcal</td><td>4</td></tr>
+                            <tr><td>Carbohidratos</td><td>4,8 g</td><td>9,6 g</td><td>3</td></tr>
+                            <tr class="sub"><td>Azúcares totales</td><td>4,8 g</td><td>9,6 g</td><td>—</td></tr>
+                            <tr class="sub"><td>Azúcares añadidos</td><td>0,0 g</td><td>0,0 g</td><td>—</td></tr>
+                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
+                            <tr><td>Grasas totales</td><td>0,0 g</td><td>0,0 g</td><td>0</td></tr>
+                            <tr class="sub"><td>Grasas saturadas</td><td>0,0 g</td><td>0,0 g</td><td>0</td></tr>
+                            <tr class="sub"><td>Grasas trans</td><td>0 g</td><td>0 g</td><td>—</td></tr>
+                            <tr><td>Fibra alimentaria</td><td>0 g</td><td>0 g</td><td>0</td></tr>
+                            <tr><td>Sodio</td><td>45 mg</td><td>90 mg</td><td>4</td></tr>
+                            <tr><td>Calcio</td><td>150 mg</td><td>300 mg</td><td>30</td></tr>
+                            <tr><td>Vitamina A</td><td>80 µg</td><td>160 µg</td><td>27</td></tr>
+                            <tr><td>Vitamina D</td><td>1,0 µg</td><td>2,0 µg</td><td>40</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="nutrition-foot">*% Valores Diarios con base a una dieta de 2000 kcal.</p>
+                </div>
+                <div class="nutrition" data-nutrition="chocolate-1l chocolate-200" hidden>
+                    <h4 class="nutrition-title">Información Nutricional</h4>
+                    <p class="nutrition-portion">Porción 200 ml</p>
+                    <table class="nutrition-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>100 ml</th>
+                                <th>Porción</th>
+                                <th>%VD*</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Valor energético</td><td>48 kcal</td><td>97 kcal</td><td>5</td></tr>
+                            <tr><td>Carbohidratos</td><td>6,2 g</td><td>12 g</td><td>4</td></tr>
+                            <tr class="sub"><td>Azúcares totales</td><td>6,2 g</td><td>12 g</td><td>—</td></tr>
+                            <tr class="sub"><td>Azúcares añadidos</td><td>0,0 g</td><td>0,0 g</td><td>—</td></tr>
+                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
+                            <tr><td>Grasas totales</td><td>0,2 g</td><td>0,4 g</td><td>0</td></tr>
+                            <tr class="sub"><td>Grasas saturadas</td><td>0,1 g</td><td>0,2 g</td><td>0</td></tr>
+                            <tr class="sub"><td>Grasas trans</td><td>0 g</td><td>0 g</td><td>—</td></tr>
+                            <tr><td>Fibra alimentaria</td><td>0 g</td><td>0 g</td><td>0</td></tr>
+                            <tr><td>Sodio</td><td>55 mg</td><td>101 mg</td><td>4</td></tr>
+                            <tr><td>Calcio</td><td>113 mg</td><td>226 mg</td><td>22</td></tr>
+                            <tr><td>Vitamina A</td><td>75 µg</td><td>150 µg</td><td>25</td></tr>
+                            <tr><td>Vitamina D</td><td>0,75 µg</td><td>1,5 µg</td><td>30</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="nutrition-foot">*% Valores Diarios con base a una dieta de 2000 kcal.</p>
+                </div>
+                <div class="nutrition" data-nutrition="latte" hidden>
+                    <h4 class="nutrition-title">Información Nutricional</h4>
+                    <p class="nutrition-portion">Porción 200 ml (1 envase)</p>
+                    <table class="nutrition-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>100 ml</th>
+                                <th>Porción</th>
+                                <th>%VD*</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Valor energético</td><td>45 kcal</td><td>90 kcal</td><td>5</td></tr>
+                            <tr><td>Carbohidratos</td><td>6,1 g</td><td>12 g</td><td>4</td></tr>
+                            <tr class="sub"><td>Azúcares totales</td><td>5,8 g</td><td>12 g</td><td>—</td></tr>
+                            <tr class="sub"><td>Azúcares añadidos</td><td>0 g</td><td>0 g</td><td>—</td></tr>
+                            <tr><td>Proteínas</td><td>5,4 g</td><td>11 g</td><td>15</td></tr>
+                            <tr><td>Sodio</td><td>51 mg</td><td>102 mg</td><td>4</td></tr>
+                            <tr><td>Calcio</td><td>113 mg</td><td>226 mg</td><td>22</td></tr>
+                            <tr><td>Vitamina A</td><td>78 µg</td><td>156 µg</td><td>25</td></tr>
+                            <tr><td>Vitamina D</td><td>0,8 µg</td><td>1,6 µg</td><td>30</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="nutrition-foot">No aporta cantidades significativas de grasas totales, grasas
+                        saturadas, grasas trans y fibra alimentaria. *% Valores Diarios con base a una
+                        dieta de 2000 kcal.</p>
+                </div>
+                <div class="nutrition nutrition-pending" hidden>
+                    <h4 class="nutrition-title">Información Nutricional</h4>
+                    <p class="nutrition-portion">Consultá la tabla nutricional completa en el envase.</p>
                 </div>
             </div>
         </div>
@@ -425,7 +324,7 @@
                     <div class="moment-text">
                         <span class="moment-time">Post-entreno</span>
                         <h3>Batido 200 ml</h3>
-                        <p>En la mochila, bien frío. 11g de proteína en 200 ml.</p>
+                        <p>Batido de chocolate con 11g de proteína para tomar cuando quieras.</p>
                     </div>
                 </li>
                 <li class="moment fade-in-up stagger-4">
@@ -433,30 +332,10 @@
                     <div class="moment-text">
                         <span class="moment-time">En casa</span>
                         <h3>Batido 1L</h3>
-                        <p>En la heladera, para un vaso cuando quieras.</p>
+                        <p>En la heladera, para servirte un vaso en casa.</p>
                     </div>
                 </li>
             </ol>
-        </div>
-    </section>
-
-    <!-- SECCIÓN 5: MANIFIESTO (Empatía) - en texto real: dos preguntas y la respuesta -->
-    <section class="manifesto-section">
-        <div class="container">
-            <div class="manifesto-grid">
-                <div class="manifesto-block">
-                    <img src="assets/icon-2.webp?v=2" alt="" class="manifesto-icon-img" loading="lazy">
-                    <p class="manifesto-text">¿Quién dijo que las <strong>proteínas</strong> son solo para los que levantan pesas?</p>
-                </div>
-                <div class="manifesto-block">
-                    <img src="assets/icon-1.webp?v=2" alt="" class="manifesto-icon-img" loading="lazy">
-                    <p class="manifesto-text">¿O que el <strong>bienestar</strong> se mide en kilómetros corridos?</p>
-                </div>
-                <div class="manifesto-block manifesto-answer">
-                    <img src="assets/icon-3.webp?v=2" alt="" class="manifesto-icon-img" loading="lazy">
-                    <p class="manifesto-text"><strong class="manifesto-brand">Vida Activa</strong> porque creemos que <strong>estar bien</strong> es mucho más que eso.</p>
-                </div>
-            </div>
         </div>
     </section>
 
